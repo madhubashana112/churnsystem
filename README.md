@@ -93,9 +93,19 @@ Open your browser and navigate to:
 
 ## Deploying to Vercel
 
-The app runs as a single Python serverless function: `api/index.py` imports the
-FastAPI app and `vercel.json` rewrites every path to it, so FastAPI keeps doing
-its own routing.
+Live at **https://churnsystem-two.vercel.app**, deployed automatically on every
+push to `main`.
+
+Vercel has first-class FastAPI support: it builds the ASGI app as one function
+with a catch-all route that preserves the request path. It only needs to find
+the app, and `churn_platform/main.py` is not a location it checks, so `main.py`
+at the repository root re-exports it.
+
+Do not reach for `vercel.json` rewrites here. A rewrite replaces the path the
+function receives, so every request arrives at FastAPI as `/api/index` and gets
+FastAPI's own 404. Declaring the entrypoint in `pyproject.toml` also works but
+switches dependency installation from `requirements.txt` to `uv lock`, which
+then needs a `[project]` table.
 
 Two things were needed to make it correct on serverless, where consecutive
 requests routinely land on different instances:
