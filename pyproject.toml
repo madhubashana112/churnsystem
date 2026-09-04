@@ -1,5 +1,0 @@
-# Vercel's FastAPI runtime needs to be told where the ASGI app lives, since it
-# is not in one of the default locations (main.py / app.py / api/index.py).
-# Runtime dependencies stay in requirements.txt, which the build installs.
-[tool.vercel]
-entrypoint = "churn_platform.main:app"
