@@ -1,0 +1,21 @@
+dispute_id,account_id,reason,open_date
+dsp_1,acc_86,Duplicate,2026-08-12
+dsp_2,acc_71,Duplicate,2026-08-07
+dsp_3,acc_23,Fraudulent,2026-08-10
+dsp_4,acc_41,Fraudulent,2026-08-03
+dsp_5,acc_93,Not Received,2026-08-29
+dsp_6,acc_80,Duplicate,2026-08-26
+dsp_7,acc_28,Not Received,2026-08-03
+dsp_8,acc_48,Fraudulent,2026-08-06
+dsp_9,acc_38,Duplicate,2026-08-26
+dsp_10,acc_31,Not Received,2026-08-11
+dsp_11,acc_14,Not Received,2026-08-30
+dsp_12,acc_97,Not Received,2026-08-06
+dsp_13,acc_73,Fraudulent,2026-08-06
+dsp_14,acc_91,Fraudulent,2026-08-14
+dsp_15,acc_88,Fraudulent,2026-08-09
+dsp_16,acc_77,Duplicate,2026-08-30
+dsp_17,acc_90,Fraudulent,2026-08-20
+dsp_18,acc_29,Duplicate,2026-08-10
+dsp_19,acc_51,Not Received,2026-08-27
+dsp_20,acc_49,Not Received,2026-08-12

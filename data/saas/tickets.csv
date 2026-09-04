@@ -1,0 +1,51 @@
+ticket_id,user_id,subject,sentiment,status
+tkt_1,usr_32,Cannot login,Negative,CLOSED
+tkt_2,usr_86,Export not working,Neutral,CLOSED
+tkt_3,usr_70,Slow performance,Negative,CLOSED
+tkt_4,usr_35,Cannot login,Negative,OPEN
+tkt_5,usr_22,Export not working,Neutral,CLOSED
+tkt_6,usr_65,Export not working,Neutral,CLOSED
+tkt_7,usr_84,Competitor is cheaper,Neutral,CLOSED
+tkt_8,usr_22,Competitor is cheaper,Very Negative,CLOSED
+tkt_9,usr_11,Cannot login,Negative,OPEN
+tkt_10,usr_77,Competitor is cheaper,Negative,OPEN
+tkt_11,usr_3,Export not working,Neutral,OPEN
+tkt_12,usr_9,Competitor is cheaper,Neutral,OPEN
+tkt_13,usr_60,Cancel subscription,Neutral,CLOSED
+tkt_14,usr_76,Competitor is cheaper,Neutral,OPEN
+tkt_15,usr_87,Export not working,Very Negative,OPEN
+tkt_16,usr_14,Cannot login,Negative,OPEN
+tkt_17,usr_97,Slow performance,Neutral,OPEN
+tkt_18,usr_18,Competitor is cheaper,Very Negative,CLOSED
+tkt_19,usr_73,Export not working,Neutral,OPEN
+tkt_20,usr_23,Slow performance,Very Negative,CLOSED
+tkt_21,usr_74,Slow performance,Neutral,OPEN
+tkt_22,usr_83,Cancel subscription,Neutral,CLOSED
+tkt_23,usr_47,Slow performance,Neutral,CLOSED
+tkt_24,usr_69,Export not working,Neutral,OPEN
+tkt_25,usr_47,Export not working,Neutral,OPEN
+tkt_26,usr_87,Competitor is cheaper,Negative,OPEN
+tkt_27,usr_30,Competitor is cheaper,Very Negative,OPEN
+tkt_28,usr_25,Competitor is cheaper,Negative,CLOSED
+tkt_29,usr_28,Slow performance,Neutral,CLOSED
+tkt_30,usr_98,Slow performance,Negative,OPEN
+tkt_31,usr_25,Cancel subscription,Neutral,OPEN
+tkt_32,usr_74,Competitor is cheaper,Neutral,CLOSED
+tkt_33,usr_78,Cannot login,Negative,OPEN
+tkt_34,usr_58,Cancel subscription,Negative,CLOSED
+tkt_35,usr_94,Cannot login,Neutral,OPEN
+tkt_36,usr_41,Slow performance,Neutral,CLOSED
+tkt_37,usr_25,Cancel subscription,Very Negative,CLOSED
+tkt_38,usr_78,Cancel subscription,Neutral,CLOSED
+tkt_39,usr_99,Export not working,Neutral,CLOSED
+tkt_40,usr_48,Slow performance,Negative,CLOSED
+tkt_41,usr_98,Slow performance,Neutral,OPEN
+tkt_42,usr_10,Cancel subscription,Neutral,CLOSED
+tkt_43,usr_99,Slow performance,Neutral,OPEN
+tkt_44,usr_75,Cancel subscription,Negative,CLOSED
+tkt_45,usr_11,Export not working,Negative,CLOSED
+tkt_46,usr_85,Cancel subscription,Negative,OPEN
+tkt_47,usr_21,Slow performance,Very Negative,OPEN
+tkt_48,usr_86,Slow performance,Negative,OPEN
+tkt_49,usr_45,Cancel subscription,Neutral,OPEN
+tkt_50,usr_7,Cancel subscription,Neutral,CLOSED

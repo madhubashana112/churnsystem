@@ -1,0 +1,23 @@
+﻿# Environment & Secrets
+api_key.env
+*.env
+*.env.*
+!.env.example
+!api_key.env.example
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*.class
+.pytest_cache/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
