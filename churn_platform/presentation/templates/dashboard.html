@@ -1,80 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Churn AI - Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Churn AI — Dashboard</title>
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%236366f1'/%3E%3Cpath d='M20 12h-3l-2.5 7L10 5l-2.5 7H4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+        } catch (e) { /* storage blocked — keep the dark default */ }
+      })();
+    </script>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="flex h-screen">
-        <!-- Sidebar -->
-        <div class="w-64 bg-indigo-900 text-white p-6">
-            <h2 class="text-2xl font-bold mb-8" id="tenant-name">Dashboard</h2>
-            <nav class="space-y-4">
-                <a href="#" class="block hover:bg-indigo-800 p-2 rounded">Overview</a>
-                <a href="#" class="block hover:bg-indigo-800 p-2 rounded text-yellow-300">Data Upload</a>
-            </nav>
+<body>
+{% include "_icons.html" %}
+
+<div class="shell">
+
+    <!-- ---------- Sidebar ---------- -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head brand">
+            <span class="brand-mark"><svg><use href="#i-pulse"></use></svg></span>
+            <div>
+                <div class="brand-name">Churn AI</div>
+                <div class="brand-sub">Retention console</div>
+            </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-8 overflow-y-auto">
-            <h1 class="text-3xl font-bold mb-6 text-gray-800">Adaptive Churn Dashboard (<span id="sector-display"></span>)</h1>
-            
-            <!-- Upload Zone -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-8 border-2 border-dashed border-gray-300">
-                <h3 class="text-lg font-semibold mb-4">Upload Raw Data Sheets</h3>
-                <p class="text-gray-500 mb-4 text-sm">Drop multiple CSV files here (e.g. users, events, invoices, tickets).</p>
-                <input type="file" id="file-upload" multiple class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
-                <button id="analyze-btn" class="mt-4 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 hidden">Analyze Data with Qwen AI</button>
-                
-                <!-- Loading State -->
-                <div id="loading" class="hidden mt-4 text-indigo-600 animate-pulse">
-                    <p>🤖 Qwen AI is analyzing schemas, synthesizing features, and predicting churn risk... Please wait.</p>
-                </div>
+        <nav class="nav" aria-label="Sections">
+            <p class="eyebrow nav-label">Workspace</p>
+            <button class="nav-item active" data-scroll="section-overview" type="button">
+                <svg><use href="#i-grid"></use></svg> Overview
+            </button>
+            <button class="nav-item" data-scroll="section-upload" type="button">
+                <svg><use href="#i-upload"></use></svg> Data ingestion
+                <span class="nav-count" id="nav-file-count">0</span>
+            </button>
+            <button class="nav-item" data-scroll="section-schema" type="button">
+                <svg><use href="#i-layers"></use></svg> Schema map
+            </button>
+            <button class="nav-item" data-scroll="section-drivers" type="button">
+                <svg><use href="#i-trend-down"></use></svg> Churn drivers
+            </button>
+            <button class="nav-item" data-scroll="section-risk" type="button">
+                <svg><use href="#i-alert-triangle"></use></svg> At-risk accounts
+                <span class="nav-count" id="nav-risk-count">0</span>
+            </button>
+        </nav>
+
+        <div class="tenant-card">
+            <span class="avatar" id="tenant-avatar">?</span>
+            <div class="tenant-meta">
+                <div class="name" id="tenant-name">Loading…</div>
+                <div class="sector" id="tenant-sector">—</div>
             </div>
-
-            <!-- Results Section (Hidden initially) -->
-            <div id="results-section" class="hidden space-y-8">
-                <!-- Schema Mapping Modal inline -->
-                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                    <h3 class="text-lg font-semibold mb-2">AI Schema Discovery</h3>
-                    <p class="text-sm text-gray-600 mb-4">Primary Join Key: <span id="primary-key" class="font-mono bg-gray-200 px-1"></span></p>
-                    <ul id="schema-list" class="list-disc pl-5 text-sm space-y-1 text-gray-700"></ul>
-                </div>
-
-                <!-- Predictions Table -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold mb-4">High Risk Customers</h3>
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Entity ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Risk Tier</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Probability</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="predictions-body" class="bg-white divide-y divide-gray-200">
-                            <!-- Rows added by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
+            <button class="btn-icon" id="switch-tenant" type="button"
+                    style="width:30px;height:30px;border:none" title="Switch workspace" aria-label="Switch workspace">
+                <svg style="width:15px;height:15px"><use href="#i-logout"></use></svg>
+            </button>
         </div>
+    </aside>
 
-        <!-- Intervention Drawer -->
-        <div id="drawer" class="fixed inset-y-0 right-0 w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 p-6 overflow-y-auto">
-            <button id="close-drawer" class="text-gray-500 hover:text-gray-700 float-right">✕</button>
-            <h2 class="text-2xl font-bold mb-4">Retention Playbook</h2>
-            <div id="drawer-content" class="space-y-4">
-                <!-- Populated by JS -->
+    <!-- ---------- Main ---------- -->
+    <div class="main">
+        <header class="topbar">
+            <button class="btn-icon menu-btn" id="menu-btn" type="button" aria-label="Open navigation">
+                <svg><use href="#i-menu"></use></svg>
+            </button>
+            <div>
+                <h1>Churn overview</h1>
+                <div class="topbar-sub" id="topbar-sub">Upload your tables to run the first analysis</div>
+            </div>
+            <div class="topbar-actions">
+                <span class="badge badge-accent" id="sector-badge">
+                    <svg><use href="#i-target"></use></svg>
+                    <span id="sector-display">—</span>
+                </span>
+                <span class="badge badge-neutral" id="engine-badge" title="Scoring engine">
+                    <svg><use href="#i-zap"></use></svg>
+                    <span id="engine-display">Engine</span>
+                </span>
+                <button class="btn btn-sm hidden" id="export-btn" type="button" title="Download the current view as CSV">
+                    <svg><use href="#i-download"></use></svg> Export
+                </button>
+                <button class="btn-icon" id="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">
+                    <svg class="theme-ico-dark"><use href="#i-moon"></use></svg>
+                    <svg class="theme-ico-light hidden"><use href="#i-sun"></use></svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="content-inner">
+
+                <!-- ===== Stats ===== -->
+                <section class="stat-grid reveal" id="section-overview">
+                    <article class="stat" style="--stat-accent:var(--accent-text);--stat-soft:var(--accent-soft)">
+                        <div class="stat-top">
+                            <span class="stat-ico"><svg><use href="#i-users"></use></svg></span>
+                            <span class="stat-label">Accounts scored</span>
+                        </div>
+                        <div class="stat-value" id="stat-total">—</div>
+                        <div class="stat-foot" id="stat-total-foot">Awaiting first analysis</div>
+                    </article>
+
+                    <article class="stat" style="--stat-accent:var(--critical);--stat-soft:var(--critical-soft)">
+                        <div class="stat-top">
+                            <span class="stat-ico"><svg><use href="#i-alert-triangle"></use></svg></span>
+                            <span class="stat-label">At risk</span>
+                        </div>
+                        <div class="stat-value" id="stat-risk">—</div>
+                        <div class="stat-foot" id="stat-risk-foot">Medium tier and above</div>
+                    </article>
+
+                    <article class="stat" style="--stat-accent:var(--high);--stat-soft:var(--high-soft)">
+                        <div class="stat-top">
+                            <span class="stat-ico"><svg><use href="#i-gauge"></use></svg></span>
+                            <span class="stat-label">Mean churn probability</span>
+                        </div>
+                        <div class="stat-value" id="stat-avg">—</div>
+                        <div class="stat-foot" id="stat-avg-foot">Across the scored cohort</div>
+                    </article>
+
+                    <article class="stat" style="--stat-accent:var(--low);--stat-soft:var(--low-soft)">
+                        <div class="stat-top">
+                            <span class="stat-ico"><svg><use href="#i-shield"></use></svg></span>
+                            <span class="stat-label">Retention actions</span>
+                        </div>
+                        <div class="stat-value" id="stat-actions">—</div>
+                        <div class="stat-foot" id="stat-actions-foot">Playbooks generated</div>
+                    </article>
+                </section>
+
+                <!-- ===== Upload ===== -->
+                <section class="card fade-in" id="section-upload">
+                    <div class="card-head">
+                        <div>
+                            <h3>Data ingestion</h3>
+                            <div class="card-sub">Raw tables go in as they are — no pre-joining required</div>
+                        </div>
+                        <div class="card-head-actions">
+                            <span class="subtle" style="font-size:12px">Engine</span>
+                            <div class="segmented" id="engine-filter" role="group" aria-label="Choose the scoring engine">
+                                <button class="active" data-engine="auto" type="button" title="Try Qwen, fall back to the local engine">Auto</button>
+                                <button data-engine="qwen" type="button" title="Qwen only — errors are surfaced">Qwen</button>
+                                <button data-engine="local" type="button" title="Local engine only — no API calls">Local</button>
+                            </div>
+                            <button class="btn btn-sm hidden" id="clear-files" type="button">
+                                <svg><use href="#i-x"></use></svg> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="note hidden" id="engine-note">
+                            <svg><use href="#i-info"></use></svg>
+                            <span id="engine-note-text"></span>
+                        </div>
+
+                        <label class="dropzone" id="dropzone">
+                            <input type="file" id="file-upload" multiple accept=".csv,.xlsx,.xls">
+                            <span class="dz-ico"><svg><use href="#i-upload"></use></svg></span>
+                            <span class="dz-title">Drop your CSV files here</span>
+                            <span class="dz-hint">
+                                Add every table you have — subscribers, invoices, tickets, events, transactions.
+                                The resolver works out how they relate.
+                            </span>
+                            <span class="dz-formats">
+                                <span class="badge badge-neutral">.csv</span>
+                                <span class="badge badge-neutral">.xlsx</span>
+                                <span class="badge badge-neutral">multiple files</span>
+                            </span>
+                        </label>
+
+                        <!-- Bundled sample dataset -->
+                        <div class="sample-row hidden" id="sample-row">
+                            <span class="sample-ico"><svg><use href="#i-database"></use></svg></span>
+                            <div class="sample-copy">
+                                <div class="sample-title">No data to hand?</div>
+                                <div class="sample-text" id="sample-text">Checking for a bundled dataset…</div>
+                            </div>
+                            <button class="btn btn-sm" id="sample-btn" type="button" disabled>
+                                <svg><use href="#i-zap"></use></svg>
+                                <span class="btn-text">Run the sample</span>
+                            </button>
+                        </div>
+
+                        <div class="file-list" id="file-list"></div>
+
+                        <div class="upload-actions hidden" id="upload-actions">
+                            <button class="btn btn-primary" id="analyze-btn" type="button">
+                                <svg><use href="#i-sparkles"></use></svg>
+                                <span class="btn-text">Run AI analysis</span>
+                            </button>
+                            <span class="subtle" style="font-size:12.5px" id="upload-summary"></span>
+                        </div>
+
+                        <!-- Progress -->
+                        <div class="progress-panel hidden" id="progress-panel" aria-live="polite">
+                            <div class="progress-head">
+                                <span class="spinner"></span>
+                                <span class="progress-msg" id="progress-msg">Reading your files…</span>
+                            </div>
+                            <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+                            <div class="progress-steps">
+                                <span class="progress-step" data-step="0"><span class="tick"><svg><use href="#i-check"></use></svg></span> Parsing tables</span>
+                                <span class="progress-step" data-step="1"><span class="tick"><svg><use href="#i-check"></use></svg></span> Resolving schema</span>
+                                <span class="progress-step" data-step="2"><span class="tick"><svg><use href="#i-check"></use></svg></span> Synthesising features</span>
+                                <span class="progress-step" data-step="3"><span class="tick"><svg><use href="#i-check"></use></svg></span> Scoring churn risk</span>
+                            </div>
+                        </div>
+
+                        <!-- Batch-limit disclosure, filled in after a run -->
+                        <div class="note hidden" id="batch-note">
+                            <svg><use href="#i-info"></use></svg>
+                            <span id="batch-note-text"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== Results ===== -->
+                <div id="results-section" class="hidden stack gap-22">
+
+                    <!-- Schema -->
+                    <section class="card fade-in" id="section-schema">
+                        <div class="card-head">
+                            <div>
+                                <h3>AI schema discovery</h3>
+                                <div class="card-sub">How each ingested table was classified</div>
+                            </div>
+                            <div class="card-head-actions">
+                                <span class="kv-pill">
+                                    <span class="k">Join key</span>
+                                    <span class="mono" id="primary-key">—</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="schema-grid" id="schema-list"></div>
+                        </div>
+                    </section>
+
+                    <!-- Charts -->
+                    <section class="chart-grid">
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h3>Risk distribution</h3>
+                                    <div class="card-sub">Accounts by predicted tier</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-box"><canvas id="chart-tiers"></canvas></div>
+                                <div class="legend" id="tier-legend"></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h3>Probability spread</h3>
+                                    <div class="card-sub">Accounts per churn-probability band</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-box"><canvas id="chart-spread"></canvas></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Drivers + channel mix -->
+                    <section class="chart-grid" id="section-drivers">
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h3>What is driving churn</h3>
+                                    <div class="card-sub">Most frequently cited reasons across the cohort</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="bar-list" id="driver-bars"></div>
+                                <div class="empty hidden" id="drivers-empty">
+                                    <span class="empty-ico"><svg><use href="#i-trend-down"></use></svg></span>
+                                    <span class="empty-title">No drivers returned</span>
+                                    <span class="empty-text">This sector core did not cite explicit reasons for these accounts.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-head">
+                                <div>
+                                    <h3>Recommended outreach</h3>
+                                    <div class="card-sub">Channels and action types across the playbooks</div>
+                                </div>
+                            </div>
+                            <div class="card-body stack gap-18">
+                                <div>
+                                    <div class="section-title"><svg><use href="#i-send"></use></svg> Channel mix</div>
+                                    <div class="mix-list" id="channel-mix"></div>
+                                </div>
+                                <div>
+                                    <div class="section-title"><svg><use href="#i-zap"></use></svg> Action types</div>
+                                    <div class="mix-list" id="action-mix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Predictions -->
+                    <section class="card" id="section-risk">
+                        <div class="card-head">
+                            <div>
+                                <h3>At-risk accounts</h3>
+                                <div class="card-sub" id="table-caption">Ranked by churn probability</div>
+                            </div>
+                        </div>
+
+                        <div class="table-tools">
+                            <div class="search-box">
+                                <svg><use href="#i-search"></use></svg>
+                                <input type="search" id="table-search" placeholder="Search entity ID…  (press /)" aria-label="Search accounts">
+                            </div>
+                            <div class="segmented" id="tier-filter" role="group" aria-label="Filter by risk tier">
+                                <button class="active" data-tier="RISK" type="button">At risk</button>
+                                <button data-tier="CRITICAL" type="button">Critical</button>
+                                <button data-tier="HIGH" type="button">High</button>
+                                <button data-tier="ALL" type="button">All</button>
+                            </div>
+                            <span class="subtle ml-auto" style="font-size:12.5px" id="table-count"></span>
+                        </div>
+
+                        <div class="card-body card-body-flush">
+                            <div class="table-wrap">
+                                <table class="data">
+                                    <thead>
+                                        <tr>
+                                            <th class="sortable" data-sort="entity_id">Entity <span class="sort-ind">▲▼</span></th>
+                                            <th class="sortable" data-sort="risk_tier">Risk tier <span class="sort-ind">▲▼</span></th>
+                                            <th class="sortable sorted" data-sort="churn_probability">Churn probability <span class="sort-ind">▼</span></th>
+                                            <th>Recommended channel</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="predictions-body"></tbody>
+                                </table>
+                            </div>
+                            <div class="empty hidden" id="table-empty">
+                                <span class="empty-ico"><svg><use href="#i-search"></use></svg></span>
+                                <span class="empty-title">Nothing matches that filter</span>
+                                <span class="empty-text">Try a different risk tier or clear the search box.</span>
+                            </div>
+                        </div>
+
+                        <div class="table-foot hidden" id="table-foot">
+                            <button class="btn btn-sm" id="load-more" type="button">
+                                <svg><use href="#i-list"></use></svg> Show more
+                            </button>
+                            <span class="subtle" style="font-size:12.5px" id="load-more-text"></span>
+                            <span class="subtle ml-auto" style="font-size:12px">
+                                <span class="kbd">/</span> search &nbsp; <span class="kbd">Esc</span> close
+                            </span>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ===== Empty placeholder before first run ===== -->
+                <section class="card" id="placeholder">
+                    <div class="empty">
+                        <span class="empty-ico"><svg><use href="#i-database"></use></svg></span>
+                        <span class="empty-title">No analysis yet</span>
+                        <span class="empty-text">
+                            Once you ingest your tables and run the analysis, the schema map,
+                            risk breakdown, churn drivers and retention playbooks appear here.
+                        </span>
+                    </div>
+                </section>
+
             </div>
         </div>
     </div>
-    
-    <script src="/static/js/app.js"></script>
+</div>
+
+<!-- ---------- Drawer ---------- -->
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="drawer-head">
+        <div>
+            <p class="eyebrow" style="margin-bottom:4px">Retention playbook</p>
+            <h2 id="drawer-title">—</h2>
+        </div>
+        <div class="drawer-pager ml-auto">
+            <button class="btn-icon" id="drawer-prev" type="button" title="Previous account (←)" aria-label="Previous account"
+                    style="width:30px;height:30px">
+                <svg style="width:14px;height:14px;transform:rotate(180deg)"><use href="#i-arrow-right"></use></svg>
+            </button>
+            <span class="pos" id="drawer-pos">—</span>
+            <button class="btn-icon" id="drawer-next" type="button" title="Next account (→)" aria-label="Next account"
+                    style="width:30px;height:30px">
+                <svg style="width:14px;height:14px"><use href="#i-arrow-right"></use></svg>
+            </button>
+            <button class="btn-icon" id="close-drawer" type="button" aria-label="Close playbook" style="margin-left:4px">
+                <svg><use href="#i-x"></use></svg>
+            </button>
+        </div>
+    </div>
+    <div class="drawer-body" id="drawer-content"></div>
+    <div class="drawer-foot">
+        <div class="drawer-foot-actions">
+            <button class="btn" id="copy-message" type="button">
+                <svg><use href="#i-file"></use></svg> Copy message
+            </button>
+            <button class="btn btn-success" id="deploy-btn" type="button">
+                <svg><use href="#i-send"></use></svg> Deploy
+            </button>
+        </div>
+    </div>
+</aside>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="/static/js/app.js"></script>
 </body>
 </html>

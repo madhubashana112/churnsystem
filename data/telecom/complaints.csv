@@ -1,31 +1,96 @@
-comp_id,subscriber_id,category,notes
-comp_1,sub_54,NETWORK,Customer issue reported
-comp_2,sub_72,NETWORK,Customer issue reported
-comp_3,sub_49,NETWORK,Customer issue reported
-comp_4,sub_99,GENERAL,Customer issue reported
-comp_5,sub_11,BILLING,Customer issue reported
-comp_6,sub_88,BILLING,Customer issue reported
-comp_7,sub_49,MNP_PORT_OUT,Customer issue reported
-comp_8,sub_21,BILLING,Customer issue reported
-comp_9,sub_66,BILLING,Customer issue reported
-comp_10,sub_63,BILLING,Customer issue reported
-comp_11,sub_83,GENERAL,Customer issue reported
-comp_12,sub_28,GENERAL,Customer issue reported
-comp_13,sub_17,MNP_PORT_OUT,Customer issue reported
-comp_14,sub_6,BILLING,Customer issue reported
-comp_15,sub_19,GENERAL,Customer issue reported
-comp_16,sub_56,MNP_PORT_OUT,Customer issue reported
-comp_17,sub_28,MNP_PORT_OUT,Customer issue reported
-comp_18,sub_66,MNP_PORT_OUT,Customer issue reported
-comp_19,sub_38,NETWORK,Customer issue reported
-comp_20,sub_37,MNP_PORT_OUT,Customer issue reported
-comp_21,sub_68,GENERAL,Customer issue reported
-comp_22,sub_86,BILLING,Customer issue reported
-comp_23,sub_90,NETWORK,Customer issue reported
-comp_24,sub_49,BILLING,Customer issue reported
-comp_25,sub_43,BILLING,Customer issue reported
-comp_26,sub_36,NETWORK,Customer issue reported
-comp_27,sub_58,NETWORK,Customer issue reported
-comp_28,sub_13,NETWORK,Customer issue reported
-comp_29,sub_52,NETWORK,Customer issue reported
-comp_30,sub_58,GENERAL,Customer issue reported
+comp_id,subscriber_id,category,logged_at,notes
+comp_1,sub_2,NETWORK,2026-07-26,Repeated call drops at the home address
+comp_2,sub_3,GENERAL,2026-07-14,General enquiry about the current plan
+comp_3,sub_5,GENERAL,2026-07-11,General enquiry about the current plan
+comp_4,sub_6,GENERAL,2026-07-07,General enquiry about the current plan
+comp_5,sub_7,BILLING,2026-06-29,Disputes the last bill amount
+comp_6,sub_7,BILLING,2026-06-20,Disputes the last bill amount
+comp_7,sub_9,BILLING,2026-06-14,Disputes the last bill amount
+comp_8,sub_11,BILLING,2026-06-30,Disputes the last bill amount
+comp_9,sub_11,BILLING,2026-08-08,Disputes the last bill amount
+comp_10,sub_11,NETWORK,2026-07-21,Repeated call drops at the home address
+comp_11,sub_13,NETWORK,2026-06-15,Repeated call drops at the home address
+comp_12,sub_14,MNP_PORT_OUT,2026-08-11,Asked for the porting authorisation code
+comp_13,sub_16,NETWORK,2026-07-20,Repeated call drops at the home address
+comp_14,sub_17,BILLING,2026-06-09,Disputes the last bill amount
+comp_15,sub_19,MNP_PORT_OUT,2026-06-17,Asked for the porting authorisation code
+comp_16,sub_19,BILLING,2026-09-02,Disputes the last bill amount
+comp_17,sub_19,MNP_PORT_OUT,2026-08-28,Asked for the porting authorisation code
+comp_18,sub_21,MNP_PORT_OUT,2026-08-19,Asked for the porting authorisation code
+comp_19,sub_22,MNP_PORT_OUT,2026-07-19,Asked for the porting authorisation code
+comp_20,sub_24,NETWORK,2026-07-01,Repeated call drops at the home address
+comp_21,sub_24,MNP_PORT_OUT,2026-08-31,Asked for the porting authorisation code
+comp_22,sub_24,NETWORK,2026-08-01,Repeated call drops at the home address
+comp_23,sub_25,MNP_PORT_OUT,2026-06-10,Asked for the porting authorisation code
+comp_24,sub_25,NETWORK,2026-06-08,Repeated call drops at the home address
+comp_25,sub_25,MNP_PORT_OUT,2026-07-17,Asked for the porting authorisation code
+comp_26,sub_27,BILLING,2026-07-31,Disputes the last bill amount
+comp_27,sub_28,BILLING,2026-09-01,Disputes the last bill amount
+comp_28,sub_30,MNP_PORT_OUT,2026-07-20,Asked for the porting authorisation code
+comp_29,sub_30,GENERAL,2026-08-22,General enquiry about the current plan
+comp_30,sub_30,MNP_PORT_OUT,2026-06-26,Asked for the porting authorisation code
+comp_31,sub_32,BILLING,2026-07-08,Disputes the last bill amount
+comp_32,sub_33,NETWORK,2026-07-27,Repeated call drops at the home address
+comp_33,sub_34,MNP_PORT_OUT,2026-06-24,Asked for the porting authorisation code
+comp_34,sub_35,BILLING,2026-08-19,Disputes the last bill amount
+comp_35,sub_43,BILLING,2026-08-14,Disputes the last bill amount
+comp_36,sub_43,NETWORK,2026-07-30,Repeated call drops at the home address
+comp_37,sub_43,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
+comp_38,sub_45,MNP_PORT_OUT,2026-06-11,Asked for the porting authorisation code
+comp_39,sub_45,MNP_PORT_OUT,2026-07-07,Asked for the porting authorisation code
+comp_40,sub_45,MNP_PORT_OUT,2026-08-29,Asked for the porting authorisation code
+comp_41,sub_46,BILLING,2026-08-26,Disputes the last bill amount
+comp_42,sub_48,BILLING,2026-06-12,Disputes the last bill amount
+comp_43,sub_50,NETWORK,2026-06-30,Repeated call drops at the home address
+comp_44,sub_50,NETWORK,2026-09-01,Repeated call drops at the home address
+comp_45,sub_50,NETWORK,2026-08-24,Repeated call drops at the home address
+comp_46,sub_51,NETWORK,2026-07-04,Repeated call drops at the home address
+comp_47,sub_53,GENERAL,2026-07-05,General enquiry about the current plan
+comp_48,sub_53,NETWORK,2026-07-14,Repeated call drops at the home address
+comp_49,sub_56,BILLING,2026-07-24,Disputes the last bill amount
+comp_50,sub_56,BILLING,2026-08-27,Disputes the last bill amount
+comp_51,sub_56,MNP_PORT_OUT,2026-06-23,Asked for the porting authorisation code
+comp_52,sub_59,BILLING,2026-08-14,Disputes the last bill amount
+comp_53,sub_59,BILLING,2026-07-17,Disputes the last bill amount
+comp_54,sub_59,MNP_PORT_OUT,2026-08-31,Asked for the porting authorisation code
+comp_55,sub_59,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
+comp_56,sub_59,NETWORK,2026-08-09,Repeated call drops at the home address
+comp_57,sub_60,MNP_PORT_OUT,2026-07-07,Asked for the porting authorisation code
+comp_58,sub_62,BILLING,2026-08-18,Disputes the last bill amount
+comp_59,sub_64,NETWORK,2026-06-11,Repeated call drops at the home address
+comp_60,sub_65,BILLING,2026-08-26,Disputes the last bill amount
+comp_61,sub_68,NETWORK,2026-08-15,Repeated call drops at the home address
+comp_62,sub_68,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
+comp_63,sub_68,NETWORK,2026-07-14,Repeated call drops at the home address
+comp_64,sub_69,MNP_PORT_OUT,2026-08-22,Asked for the porting authorisation code
+comp_65,sub_73,MNP_PORT_OUT,2026-07-23,Asked for the porting authorisation code
+comp_66,sub_73,BILLING,2026-07-11,Disputes the last bill amount
+comp_67,sub_73,MNP_PORT_OUT,2026-08-12,Asked for the porting authorisation code
+comp_68,sub_73,BILLING,2026-06-16,Disputes the last bill amount
+comp_69,sub_74,BILLING,2026-06-18,Disputes the last bill amount
+comp_70,sub_75,GENERAL,2026-08-22,General enquiry about the current plan
+comp_71,sub_78,NETWORK,2026-06-11,Repeated call drops at the home address
+comp_72,sub_78,NETWORK,2026-08-04,Repeated call drops at the home address
+comp_73,sub_78,GENERAL,2026-07-11,General enquiry about the current plan
+comp_74,sub_79,MNP_PORT_OUT,2026-07-03,Asked for the porting authorisation code
+comp_75,sub_80,NETWORK,2026-08-03,Repeated call drops at the home address
+comp_76,sub_83,MNP_PORT_OUT,2026-08-17,Asked for the porting authorisation code
+comp_77,sub_83,GENERAL,2026-07-22,General enquiry about the current plan
+comp_78,sub_83,BILLING,2026-06-27,Disputes the last bill amount
+comp_79,sub_83,BILLING,2026-09-05,Disputes the last bill amount
+comp_80,sub_84,BILLING,2026-09-05,Disputes the last bill amount
+comp_81,sub_84,BILLING,2026-07-25,Disputes the last bill amount
+comp_82,sub_85,MNP_PORT_OUT,2026-07-15,Asked for the porting authorisation code
+comp_83,sub_85,NETWORK,2026-06-21,Repeated call drops at the home address
+comp_84,sub_85,NETWORK,2026-07-25,Repeated call drops at the home address
+comp_85,sub_86,BILLING,2026-07-27,Disputes the last bill amount
+comp_86,sub_87,NETWORK,2026-06-09,Repeated call drops at the home address
+comp_87,sub_88,NETWORK,2026-09-01,Repeated call drops at the home address
+comp_88,sub_91,NETWORK,2026-07-10,Repeated call drops at the home address
+comp_89,sub_91,NETWORK,2026-07-29,Repeated call drops at the home address
+comp_90,sub_96,MNP_PORT_OUT,2026-08-07,Asked for the porting authorisation code
+comp_91,sub_97,NETWORK,2026-07-18,Repeated call drops at the home address
+comp_92,sub_99,BILLING,2026-09-02,Disputes the last bill amount
+comp_93,sub_99,BILLING,2026-07-10,Disputes the last bill amount
+comp_94,sub_99,BILLING,2026-09-05,Disputes the last bill amount
+comp_95,sub_100,GENERAL,2026-06-13,General enquiry about the current plan

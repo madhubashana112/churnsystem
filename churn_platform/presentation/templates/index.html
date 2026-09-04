@@ -1,37 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Churn AI - Onboarding</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Churn AI — Get started</title>
+    <meta name="description" content="Domain-adaptive churn prediction for SaaS, Telecom and FinTech.">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%236366f1'/%3E%3Cpath d='M20 12h-3l-2.5 7L10 5l-2.5 7H4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <script>
+      // Set the theme before first paint so there is no flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+        } catch (e) { /* storage blocked — keep the dark default */ }
+      })();
+    </script>
 </head>
-<body class="bg-gray-50 h-screen flex flex-col justify-center items-center">
+<body>
+{% include "_icons.html" %}
 
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Tenant Onboarding</h1>
-        
-        <form id="onboard-form" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Company Name</label>
-                <input type="text" id="company-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" required>
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Sector</label>
-                <select id="sector" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" required>
-                    <option value="SaaS">SaaS (B2B/B2C)</option>
-                    <option value="Telecom">Telecom & ISP</option>
-                    <option value="FinTech">FinTech & Banking</option>
-                </select>
-            </div>
+<main class="auth">
 
-            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                Register & Continue
+    <!-- ---------- Marketing panel ---------- -->
+    <aside class="auth-aside">
+        <div class="brand">
+            <span class="brand-mark"><svg><use href="#i-pulse"></use></svg></span>
+            <div>
+                <div class="brand-name">Churn AI</div>
+                <div class="brand-sub">Domain-adaptive retention</div>
+            </div>
+        </div>
+
+        <div class="auth-aside-body">
+            <span class="badge badge-accent" style="margin-bottom:18px">
+                <svg style="width:13px;height:13px"><use href="#i-sparkles"></use></svg>
+                Powered by Qwen
+            </span>
+
+            <h1 class="auth-title">
+                Know who is leaving<br><span class="grad">before they do.</span>
+            </h1>
+            <p class="auth-lede">
+                Drop in your raw tables. The platform maps the schema on its own,
+                synthesises behavioural features and scores every account against
+                churn signals tuned to your industry.
+            </p>
+
+            <div class="feature-list">
+                <div class="feature">
+                    <span class="feature-ico"><svg><use href="#i-layers"></use></svg></span>
+                    <div>
+                        <div class="feature-title">Automatic schema discovery</div>
+                        <div class="feature-text">Classifies each file, finds the join key and drops the noise columns — no mapping config to write.</div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-ico"><svg><use href="#i-target"></use></svg></span>
+                    <div>
+                        <div class="feature-title">Sector-specific risk cores</div>
+                        <div class="feature-text">Separate reasoning models for SaaS, Telecom and FinTech, each with their own churn drivers.</div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-ico"><svg><use href="#i-shield"></use></svg></span>
+                    <div>
+                        <div class="feature-title">Retention playbooks</div>
+                        <div class="feature-text">Every at-risk account arrives with a channel, an action type and a ready-to-send message.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="auth-foot">Multi-tenant &middot; SaaS &middot; Telecom &middot; FinTech</p>
+    </aside>
+
+    <!-- ---------- Form panel ---------- -->
+    <section class="auth-main">
+        <div class="auth-main-top">
+            <button class="btn-icon" id="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">
+                <svg class="theme-ico-dark"><use href="#i-moon"></use></svg>
+                <svg class="theme-ico-light hidden"><use href="#i-sun"></use></svg>
             </button>
-        </form>
-    </div>
+        </div>
 
-    <script src="/static/js/app.js"></script>
+        <div class="auth-form-wrap fade-in">
+            <div class="auth-heading">
+                <p class="eyebrow" style="margin-bottom:8px">Step 1 of 2</p>
+                <h2>Create your workspace</h2>
+                <p>Tell us who you are and which vertical you operate in — the analysis engine adapts from there.</p>
+            </div>
+
+            <form id="onboard-form" class="stack gap-18" novalidate>
+                <div class="field">
+                    <label class="label" for="company-name">Company name</label>
+                    <input class="input" type="text" id="company-name" name="company"
+                           placeholder="e.g. Northwind Telecom" autocomplete="organization"
+                           aria-describedby="company-error" required>
+                    <span class="field-error" id="company-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                    <span class="label" id="sector-label">Industry vertical</span>
+                    <div class="option-grid" role="radiogroup" aria-labelledby="sector-label">
+
+                        <label class="option">
+                            <input type="radio" name="sector" value="SaaS" checked>
+                            <span class="option-ico"><svg><use href="#i-cloud"></use></svg></span>
+                            <span class="option-body">
+                                <span class="option-title">SaaS</span>
+                                <span class="option-desc">B2B / B2C subscriptions, seats &amp; usage</span>
+                            </span>
+                            <span class="option-check"><svg><use href="#i-check"></use></svg></span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="sector" value="Telecom">
+                            <span class="option-ico"><svg><use href="#i-signal"></use></svg></span>
+                            <span class="option-body">
+                                <span class="option-title">Telecom</span>
+                                <span class="option-desc">Carriers &amp; ISPs, CDRs, recharges</span>
+                            </span>
+                            <span class="option-check"><svg><use href="#i-check"></use></svg></span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="sector" value="FinTech">
+                            <span class="option-ico"><svg><use href="#i-bank"></use></svg></span>
+                            <span class="option-body">
+                                <span class="option-title">FinTech</span>
+                                <span class="option-desc">Banking, cards, ledgers &amp; disputes</span>
+                            </span>
+                            <span class="option-check"><svg><use href="#i-check"></use></svg></span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="onboard-submit">
+                    <span class="btn-text">Continue to dashboard</span>
+                    <svg class="btn-arrow"><use href="#i-arrow-right"></use></svg>
+                </button>
+
+                <p class="subtle" style="font-size:12px;text-align:center">
+                    No account required — your workspace lives in this browser session.
+                </p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="/static/js/app.js"></script>
 </body>
 </html>
