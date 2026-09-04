@@ -10,8 +10,8 @@ VALID_SECTORS = ["SaaS", "Telecom", "FinTech"]
 
 
 def get_register_use_case():
-    from churn_platform.presentation.api.dependencies import get_tenant_repo
-    return RegisterTenantUseCase(get_tenant_repo())
+    from churn_platform.presentation.api.dependencies import get_tenant_repo, get_tenant_id_factory
+    return RegisterTenantUseCase(get_tenant_repo(), get_tenant_id_factory())
 
 
 @router.post("/", response_model=TenantResponse)

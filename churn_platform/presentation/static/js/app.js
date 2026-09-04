@@ -170,6 +170,7 @@
     document.title = `${tenantName} — Churn AI`;
 
     function signOut() {
+      store.remove(`analysis:${tenantId}`);
       ['tenant_id', 'tenant_name', 'tenant_sector'].forEach((k) => store.remove(k));
       window.location.href = '/';
     }
@@ -344,6 +345,7 @@
         const data = await res.json();
         stopProgress(true);
         render(data);
+        cacheAnalysis(data);
 
         const via = data.engine === 'qwen' ? 'Qwen AI' : 'the local engine';
         toast('Analysis complete', `${plural(data.predictions.length, 'account')} scored by ${via}.`, 'ok');
@@ -458,6 +460,30 @@
           `(${info.files.map((f) => f.file_name).join(', ')}).`;
       } catch (err) {
         console.error('Sample dataset lookup failed', err);
+      }
+    }
+
+    /* ----- Last-run cache -----
+       The server keeps the last analysis in memory, which is lost on restart and
+       unreliable on serverless where each request may hit a fresh instance. The
+       viewer's own copy makes restore-on-refresh dependable, and is per-viewer
+       data anyway. */
+    const CACHE_KEY = `analysis:${tenantId}`;
+
+    function cacheAnalysis(data) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+      } catch {
+        // Quota or private mode — restore just falls back to the server copy.
+      }
+    }
+
+    function cachedAnalysis() {
+      try {
+        const raw = localStorage.getItem(CACHE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
       }
     }
 
@@ -991,10 +1017,17 @@
         loadEngineStatus();
         loadSampleInfo();
 
+        let data = null;
         const res = await fetch(`/api/v1/analytics/latest?tenant_id=${encodeURIComponent(tenantId)}`);
-        if (res.status === 204 || !res.ok) return;   // 204 means nothing has been run yet
+        if (res.ok && res.status !== 204) {
+          data = await res.json();
+          cacheAnalysis(data);
+        } else {
+          // 204 means this instance has no copy; the viewer may still have one.
+          data = cachedAnalysis();
+        }
+        if (!data?.predictions?.length) return;
 
-        const data = await res.json();
         render(data);
         toast('Previous run restored', `${plural(data.predictions.length, 'account')} loaded from the last analysis.`, 'info', 3200);
       } catch (err) {

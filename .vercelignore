@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+_to_delete/
+.claude/
+api_key.env
+*.env
+!api_key.env.example

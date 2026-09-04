@@ -1,7 +1,10 @@
 import os
 import time
 
-from churn_platform.infrastructure.repositories.memory_tenant_repo import MemoryTenantRepository
+from churn_platform.infrastructure.repositories.stateless_tenant_repo import (
+    StatelessTenantRepository,
+    encode_tenant_id,
+)
 from churn_platform.infrastructure.repositories.memory_analysis_repo import MemoryAnalysisRepository
 from churn_platform.infrastructure.ai.qwen_gateway import QwenGateway
 from churn_platform.infrastructure.parsers.schema_resolver import AISchemaResolver
@@ -13,7 +16,8 @@ from churn_platform.infrastructure.local_engine.heuristic_schema_resolver import
 from churn_platform.infrastructure.local_engine.local_churn_core import LocalChurnCore
 
 # Singletons for MVP
-_tenant_repo = MemoryTenantRepository()
+# Stateless: works identically on one process or across serverless instances.
+_tenant_repo = StatelessTenantRepository()
 _analysis_repo = MemoryAnalysisRepository()
 _qwen_gateway = QwenGateway()
 _schema_resolver = AISchemaResolver(_qwen_gateway)
@@ -77,6 +81,10 @@ def api_key_configured() -> bool:
 
 def get_tenant_repo():
     return _tenant_repo
+
+
+def get_tenant_id_factory():
+    return encode_tenant_id
 
 
 def get_analysis_repo():

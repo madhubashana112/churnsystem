@@ -1,3 +1,5 @@
+# Runtime dependencies. This is what Vercel installs for the deployed function,
+# so keep dev-only tooling in requirements-dev.txt.
 fastapi
 uvicorn
 pydantic
@@ -8,6 +10,4 @@ openai
 jinja2
 python-multipart
 aiofiles
-pytest
 python-dotenv
-watchfiles

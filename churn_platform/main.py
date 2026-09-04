@@ -5,14 +5,24 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from dotenv import load_dotenv
 from churn_platform.presentation.api.v1 import tenants, upload, analytics, samples, engine
+from pathlib import Path
 import os
 
-load_dotenv('api_key.env')
+# Resolve everything from the package, not the working directory: serverless
+# hosts invoke the app from a different cwd than a local `uvicorn` run.
+BASE_DIR = Path(__file__).resolve().parent
+REPO_ROOT = BASE_DIR.parent
+
+load_dotenv(REPO_ROOT / "api_key.env")
 
 app = FastAPI(title="Domain-Adaptive Churn Prediction API")
 
-app.mount("/static", StaticFiles(directory="churn_platform/presentation/static"), name="static")
-templates = Jinja2Templates(directory="churn_platform/presentation/templates")
+app.mount(
+    "/static",
+    StaticFiles(directory=BASE_DIR / "presentation" / "static"),
+    name="static",
+)
+templates = Jinja2Templates(directory=BASE_DIR / "presentation" / "templates")
 
 app.include_router(tenants.router, prefix="/api/v1")
 app.include_router(upload.router, prefix="/api/v1")

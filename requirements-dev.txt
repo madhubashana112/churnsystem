@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Local development only — excluded from the deployed bundle.
+pytest
+watchfiles

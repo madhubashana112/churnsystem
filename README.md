@@ -32,34 +32,37 @@ An AI-powered multi-tenant churn prediction platform that dynamically adapts to 
 - Git
 
 ### 2. Setup Virtual Environment
-`ash
+```bash
 python -m venv venv
 # On Windows:
 .\venv\Scripts\activate
 # On macOS/Linux:
 source venv/bin/activate
-`
+```
 
 ### 3. Install Dependencies
-`ash
-pip install -r requirements.txt
-`
+```bash
+pip install -r requirements-dev.txt
+```
+
+`requirements.txt` holds runtime dependencies only — that is what the deployed
+function installs. `requirements-dev.txt` adds pytest and watchfiles.
 
 ### 4. Configuration
 Copy the sample environment file and add your credentials:
-`ash
+```bash
 cp api_key.env.example api_key.env
-`
+```
 
 ### 5. Generate Mock Data (Optional)
-`ash
+```bash
 python generate_mock_data.py
-`
+```
 
 ### 6. Run the Application
-`ash
+```bash
 uvicorn churn_platform.main:app --host 127.0.0.1 --port 8000 --reload
-`
+```
 
 Open your browser and navigate to:
 - **Onboarding**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
@@ -87,6 +90,26 @@ Open your browser and navigate to:
   The local engine has no such cost and scores up to 200.
 - Tenants and analysis results are held in memory. Restarting the server clears
   both; the dashboard detects this and returns you to onboarding.
+
+## Deploying to Vercel
+
+The app runs as a single Python serverless function: `api/index.py` imports the
+FastAPI app and `vercel.json` rewrites every path to it, so FastAPI keeps doing
+its own routing.
+
+Two things were needed to make it correct on serverless, where consecutive
+requests routinely land on different instances:
+
+- **Tenants are stateless.** The workspace id encodes the name and sector
+  (`StatelessTenantRepository`), so any instance can resolve a workspace without
+  a shared store. Sector is re-validated on decode.
+- **The last analysis is cached in the browser.** The server still keeps it in
+  memory, but that copy may not survive to the next request, so the dashboard
+  falls back to the viewer's own copy when the server returns `204`.
+
+Set `DASHSCOPE_API_KEY` in the Vercel project's environment variables to enable
+the Qwen path. Without it the deployment runs on the local engine, which needs
+no network access and no key.
 
 ## Scoring engines
 
