@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +18,8 @@
       (function () {
         try {
           var saved = localStorage.getItem('theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
-        } catch (e) { /* storage blocked — keep the dark default */ }
+          document.documentElement.dataset.theme = saved === 'dark' ? 'dark' : 'light';
+        } catch (e) { /* storage blocked — keep the light default */ }
       })();
     </script>
 </head>
@@ -96,8 +95,8 @@
                     <svg><use href="#i-download"></use></svg> Export
                 </button>
                 <button class="btn-icon" id="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">
-                    <svg class="theme-ico-dark"><use href="#i-moon"></use></svg>
-                    <svg class="theme-ico-light hidden"><use href="#i-sun"></use></svg>
+                    <svg class="theme-ico-dark hidden"><use href="#i-moon"></use></svg>
+                    <svg class="theme-ico-light"><use href="#i-sun"></use></svg>
                 </button>
             </div>
         </header>

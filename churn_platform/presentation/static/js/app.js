@@ -43,7 +43,7 @@
   /* ---------- Theme ---------- */
   const theme = {
     listeners: [],
-    get current() { return document.documentElement.dataset.theme || 'dark'; },
+    get current() { return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'; },
     apply(next) {
       document.documentElement.dataset.theme = next;
       store.set('theme', next);

@@ -1,40 +1,44 @@
 /* ============================================================
    Churn AI — Design System
-   Dark-first, token-driven. No utility framework required.
+   Light-first, token-driven. No utility framework required.
+
+   Light is the base palette on :root, so the page renders correctly
+   even before the theme script runs or if storage is unavailable.
+   Dark is an opt-in override via [data-theme="dark"].
    ============================================================ */
 
 /* ---------- 1. Tokens ---------- */
 :root {
   /* Surfaces */
-  --bg:            #0b0d14;
+  --bg:            #f5f6fb;
   --bg-grad-a:     #6366f1;
   --bg-grad-b:     #22d3ee;
-  --surface:       #12151f;
-  --surface-2:     #171b28;
-  --surface-3:     #1e2334;
-  --border:        rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
+  --surface:       #ffffff;
+  --surface-2:     #ffffff;
+  --surface-3:     #f1f3f9;
+  --border:        rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.16);
 
   /* Text */
-  --text:          #e8eaf2;
-  --text-muted:    #8a90a6;
-  --text-subtle:   #626a83;
+  --text:          #0f1320;
+  --text-muted:    #5b6478;
+  --text-subtle:   #838b9e;
 
   /* Accent */
   --accent:        #6366f1;
-  --accent-soft:   rgba(99, 102, 241, 0.14);
-  --accent-border: rgba(99, 102, 241, 0.35);
-  --accent-text:   #a5a8ff;
+  --accent-soft:   rgba(99, 102, 241, 0.10);
+  --accent-border: rgba(99, 102, 241, 0.30);
+  --accent-text:   #4f46e5;
 
   /* Risk scale */
-  --critical:      #f43f5e;
-  --critical-soft: rgba(244, 63, 94, 0.14);
-  --high:          #fb923c;
-  --high-soft:     rgba(251, 146, 60, 0.14);
-  --medium:        #fbbf24;
-  --medium-soft:   rgba(251, 191, 36, 0.14);
-  --low:           #34d399;
-  --low-soft:      rgba(52, 211, 153, 0.14);
+  --critical:      #e11d48;
+  --critical-soft: rgba(225, 29, 72, 0.10);
+  --high:          #ea7317;
+  --high-soft:     rgba(234, 115, 23, 0.12);
+  --medium:        #b8860b;
+  --medium-soft:   rgba(184, 134, 11, 0.13);
+  --low:           #059669;
+  --low-soft:      rgba(5, 150, 105, 0.11);
 
   /* Shape */
   --r-sm: 8px;
@@ -43,8 +47,8 @@
   --r-full: 999px;
 
   /* Elevation */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 24px 60px -18px rgba(0, 0, 0, 0.65);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 28px 70px -24px rgba(15, 23, 42, 0.26);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -56,38 +60,38 @@
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas,
           "Liberation Mono", monospace;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-[data-theme="light"] {
-  --bg:            #f5f6fb;
-  --surface:       #ffffff;
-  --surface-2:     #ffffff;
-  --surface-3:     #f1f3f9;
-  --border:        rgba(15, 23, 42, 0.09);
-  --border-strong: rgba(15, 23, 42, 0.16);
+[data-theme="dark"] {
+  --bg:            #0b0d14;
+  --surface:       #12151f;
+  --surface-2:     #171b28;
+  --surface-3:     #1e2334;
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
 
-  --text:          #0f1320;
-  --text-muted:    #5b6478;
-  --text-subtle:   #838b9e;
+  --text:          #e8eaf2;
+  --text-muted:    #8a90a6;
+  --text-subtle:   #626a83;
 
-  --accent-soft:   rgba(99, 102, 241, 0.10);
-  --accent-border: rgba(99, 102, 241, 0.30);
-  --accent-text:   #4f46e5;
+  --accent-soft:   rgba(99, 102, 241, 0.14);
+  --accent-border: rgba(99, 102, 241, 0.35);
+  --accent-text:   #a5a8ff;
 
-  --critical:      #e11d48;
-  --critical-soft: rgba(225, 29, 72, 0.10);
-  --high:          #ea7317;
-  --high-soft:     rgba(234, 115, 23, 0.12);
-  --medium:        #b8860b;
-  --medium-soft:   rgba(184, 134, 11, 0.13);
-  --low:           #059669;
-  --low-soft:      rgba(5, 150, 105, 0.11);
+  --critical:      #f43f5e;
+  --critical-soft: rgba(244, 63, 94, 0.14);
+  --high:          #fb923c;
+  --high-soft:     rgba(251, 146, 60, 0.14);
+  --medium:        #fbbf24;
+  --medium-soft:   rgba(251, 191, 36, 0.14);
+  --low:           #34d399;
+  --low-soft:      rgba(52, 211, 153, 0.14);
 
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 28px 70px -24px rgba(15, 23, 42, 0.26);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px -18px rgba(0, 0, 0, 0.65);
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 /* ---------- 2. Reset ---------- */
