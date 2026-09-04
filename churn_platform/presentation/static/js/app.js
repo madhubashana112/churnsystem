@@ -404,7 +404,8 @@
           ? 'Qwen only. If the API call fails the analysis will error rather than fall back.'
           : `Qwen only, but it is not currently usable: ${engineStatus.detail}`;
       } else if (!engineStatus.qwen_available) {
-        text.textContent = `${engineStatus.detail} Analyses will run on the local engine.`;
+        // detail already names the engine that will run; do not repeat it.
+        text.textContent = engineStatus.detail;
       } else {
         text.textContent = 'Qwen will be tried first, with an automatic fall back to the local engine.';
       }
