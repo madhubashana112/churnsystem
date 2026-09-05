@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Churn AI — Dashboard</title>
+    <title>{% block page_title %}Churn AI — Dashboard{% endblock %}</title>
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%236366f1'/%3E%3Cpath d='M20 12h-3l-2.5 7L10 5l-2.5 7H4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
@@ -79,7 +79,7 @@
                 <svg><use href="#i-menu"></use></svg>
             </button>
             <div>
-                <h1>Churn overview</h1>
+                <h1>{% block heading %}Churn overview{% endblock %}</h1>
                 <div class="topbar-sub" id="topbar-sub">Upload your tables to run the first analysis</div>
             </div>
             <div class="topbar-actions">
@@ -142,6 +142,9 @@
                         <div class="stat-foot" id="stat-actions-foot">Playbooks generated</div>
                     </article>
                 </section>
+
+                <!-- ===== Sector KPIs (defined by the sector template) ===== -->
+{% block sector_kpis %}{% endblock %}
 
                 <!-- ===== Upload ===== -->
                 <section class="card fade-in" id="section-upload">

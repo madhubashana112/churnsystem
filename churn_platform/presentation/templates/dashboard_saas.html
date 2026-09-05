@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block page_title %}SaaS churn — Churn AI{% endblock %}
+{% block heading %}SaaS retention overview{% endblock %}
+
+{% block sector_kpis %}
+                <section class="card fade-in" id="section-sector">
+                    <div class="card-head">
+                        <div>
+                            <h3>SaaS signals</h3>
+                            <div class="card-sub">Metrics specific to this vertical, from the latest run</div>
+                        </div>
+                        <div class="card-head-actions">
+                            <span class="badge badge-accent">SaaS</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="stat-grid" id="sector-kpi-grid">
+                        <article class="stat" style="--stat-accent:var(--critical);--stat-soft:var(--critical-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-trend-down"></use></svg></span>
+                                <span class="stat-label">MRR at risk</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="0">—</div>
+                            <div class="stat-foot" data-kpi-hint="0">Recurring revenue on at-risk accounts</div>
+                        </article>
+                        <article class="stat" style="--stat-accent:var(--high);--stat-soft:var(--high-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-gauge"></use></svg></span>
+                                <span class="stat-label">Login velocity</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="1">—</div>
+                            <div class="stat-foot" data-kpi-hint="1">Last 7 days against the prior month</div>
+                        </article>
+                        <article class="stat" style="--stat-accent:var(--accent-text);--stat-soft:var(--accent-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-users"></use></svg></span>
+                                <span class="stat-label">Feature drop-off</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="2">—</div>
+                            <div class="stat-foot" data-kpi-hint="2">Accounts silent for 7 days</div>
+                        </article>
+                        </div>
+                    </div>
+                </section>
+{% endblock %}

@@ -29,6 +29,7 @@ from churn_platform.domain.models.tenant import Tenant
 from churn_platform.infrastructure.samples import sample_catalog
 from churn_platform.infrastructure.parsers.file_ingestion import read_uploads
 from churn_platform.config import get_settings
+from churn_platform.application.sector_kpis import compute as compute_sector_kpis
 
 logger = logging.getLogger(__name__)
 
@@ -152,6 +153,7 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
     reason = score_reason or schema_reason
 
     snapshot = AnalysisSnapshot(
+        sector_kpis=compute_sector_kpis(tenant.sector, features, predictions),
         tenant_id=tenant.tenant_id,
         source=source,
         engine=engine,
@@ -173,6 +175,7 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
         "source": snapshot.source,
         "engine": engine,
         "engine_reason": reason,
+        "sector_kpis": snapshot.sector_kpis,
         "feature_count": len(features[0].features) if features else 0,
         "entities_total": len(features),
         "entities_scored": len(predictions),

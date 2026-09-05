@@ -137,7 +137,7 @@
         store.set('tenant_id', data.tenant_id);
         store.set('tenant_name', data.name);
         store.set('tenant_sector', data.sector);
-        window.location.href = '/dashboard';
+        window.location.href = `/dashboard/${data.sector.toLowerCase()}`;
       } catch (err) {
         console.error(err);
         toast('Could not create the workspace', err.message, 'error');
@@ -161,6 +161,13 @@
 
     const tenantName = store.get('tenant_name') || 'Workspace';
     const tenantSector = store.get('tenant_sector') || '—';
+
+    // /dashboard is kept for older links; the sector routes carry the KPI cards.
+    const sectorSlug = tenantSector.toLowerCase();
+    if (window.location.pathname === '/dashboard' && ['saas', 'telecom', 'fintech'].includes(sectorSlug)) {
+      window.location.replace(`/dashboard/${sectorSlug}`);
+      return;
+    }
 
     $('#tenant-name').textContent = tenantName;
     $('#tenant-sector').textContent = tenantSector;
@@ -502,6 +509,7 @@
       setEngineBadge(data.engine, data.engine_reason);
       const sourceFiles = data.source_files || [];
       renderStats(sourceFiles);
+      renderSectorKpis(data.sector_kpis);
       renderSchema(data.schema_mapping);
       renderCharts();
       renderDrivers();
@@ -514,6 +522,28 @@
       $('#topbar-sub').textContent =
         `${plural(predictions.length, 'account')} scored · ${data.source === 'sample' ? 'sample dataset' : 'your upload'}` +
         ` · ${when.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    }
+
+    /** Formats a KPI by its declared unit so the template stays presentational. */
+    function formatKpi(value, unit) {
+      if (value === null || value === undefined) return '—';
+      if (unit === 'text') return String(value);
+      const n = Number(value);
+      if (Number.isNaN(n)) return String(value);
+      if (unit === 'currency') return n.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      if (unit === 'rate') return `${(n * 100).toFixed(1)}%`;
+      if (unit === 'ratio') return `${n.toFixed(2)}×`;
+      return n.toLocaleString();
+    }
+
+    function renderSectorKpis(kpis) {
+      const cards = kpis?.cards || [];
+      cards.forEach((card, index) => {
+        const value = document.querySelector(`[data-kpi-value="${index}"]`);
+        const hint = document.querySelector(`[data-kpi-hint="${index}"]`);
+        if (value) value.textContent = formatKpi(card.value, card.unit);
+        if (hint && card.hint) hint.textContent = card.hint;
+      });
     }
 
     function renderBatchNote(data, sourceFiles) {

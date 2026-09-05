@@ -89,6 +89,7 @@ async def get_metrics(tenant_id: str = Query(..., description="Tenant to summari
         "engine": snapshot.engine,
         "engine_reason": snapshot.engine_reason,
         "source_files": [f.model_dump() for f in snapshot.source_files],
+        "sector_kpis": snapshot.sector_kpis,
         "metrics": _summarise(snapshot.predictions),
     }
 
@@ -108,5 +109,6 @@ async def get_latest_analysis(tenant_id: str = Query(..., description="Tenant to
         "engine": snapshot.engine,
         "engine_reason": snapshot.engine_reason,
         "entities_scored": len(snapshot.predictions),
+        "sector_kpis": snapshot.sector_kpis,
         "metrics": _summarise(snapshot.predictions),
     }
