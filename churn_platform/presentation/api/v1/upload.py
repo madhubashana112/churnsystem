@@ -128,7 +128,9 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
 
     schema, schema_engine, schema_reason = await _resolve_schema(file_samples, mode)
 
-    features = SynthesizeFeaturesUseCase(get_feature_synthesizer()).execute(schema, dataframes)
+    features = SynthesizeFeaturesUseCase(get_feature_synthesizer()).execute(
+        schema, dataframes, sector=tenant.sector
+    )
     if not features:
         raise HTTPException(
             status_code=422,
