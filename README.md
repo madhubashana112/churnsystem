@@ -4,6 +4,7 @@
 
 [![Live prototype](https://img.shields.io/badge/live-churnsystem--two.vercel.app-6366f1)](https://churnsystem-two.vercel.app)
 [![Tests](https://img.shields.io/badge/tests-56%20passing-059669)](#tests)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 | | |
 |---|---|
@@ -248,3 +249,7 @@ python generate_mock_data.py
 - Keyboard: `/` focuses search, `←`/`→` page through playbooks, `Esc` closes the drawer.
 - An engine badge names the engine that produced the current results, and the
   Auto / Qwen / Local selector overrides it per run.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
