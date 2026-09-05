@@ -6,7 +6,7 @@ from churn_platform.infrastructure.samples import sample_catalog
 
 router = APIRouter(prefix="/tenants", tags=["Tenants"])
 
-VALID_SECTORS = ["SaaS", "Telecom", "FinTech"]
+from churn_platform.presentation.api.dependencies import VALID_SECTORS, normalise_sector
 
 
 def get_register_use_case():
@@ -19,10 +19,17 @@ async def register_tenant(
     request: RegisterTenantRequest,
     use_case: RegisterTenantUseCase = Depends(get_register_use_case),
 ):
-    if request.sector not in VALID_SECTORS:
-        raise HTTPException(status_code=400, detail="Invalid sector. Must be SaaS, Telecom, or FinTech")
+    # Accept any casing: "saas" is a perfectly valid thing for a client to send.
+    canonical = normalise_sector(request.sector)
+    if canonical is None:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid sector. Must be one of {', '.join(VALID_SECTORS)}.",
+        )
     if not request.name.strip():
         raise HTTPException(status_code=400, detail="Company name cannot be empty")
+
+    request.sector = canonical
     return await use_case.execute(request)
 
 

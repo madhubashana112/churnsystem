@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
-from fastapi import Request
+from fastapi import Request, HTTPException
 from dotenv import load_dotenv
 from churn_platform.presentation.api.v1 import tenants, upload, analytics, samples, engine
 from pathlib import Path
@@ -23,6 +23,25 @@ app.mount(
     name="static",
 )
 templates = Jinja2Templates(directory=BASE_DIR / "presentation" / "templates")
+
+
+def _asset_version() -> str:
+    """
+    Short fingerprint of the front-end assets.
+
+    StaticFiles serves CSS and JS with no cache-busting, so a returning browser
+    keeps the previous deployment's script and silently runs old code against a
+    new API. Appending this to the asset URLs makes each build a fresh URL.
+    """
+    static_dir = BASE_DIR / "presentation" / "static"
+    newest = 0.0
+    for path in static_dir.rglob("*"):
+        if path.is_file():
+            newest = max(newest, path.stat().st_mtime)
+    return format(int(newest), "x")
+
+
+templates.env.globals["asset_version"] = _asset_version()
 
 app.include_router(tenants.router, prefix="/api/v1")
 app.include_router(upload.router, prefix="/api/v1")
@@ -47,6 +66,25 @@ async def favicon():
 @app.get("/", response_class=HTMLResponse)
 async def read_index(request: Request):
     return templates.TemplateResponse(request=request, name="index.html")
+
+SECTOR_TEMPLATES = {
+    "saas": "dashboard_saas.html",
+    "telecom": "dashboard_telecom.html",
+    "fintech": "dashboard_fintech.html",
+}
+
+
+@app.get("/dashboard/{sector}", response_class=HTMLResponse)
+async def read_sector_dashboard(request: Request, sector: str):
+    """
+    Each vertical gets its own template extending base.html, so its KPI cards
+    live in the template rather than being toggled at runtime.
+    """
+    template = SECTOR_TEMPLATES.get(sector.strip().lower())
+    if template is None:
+        raise HTTPException(status_code=404, detail=f"Unknown sector: {sector}")
+    return templates.TemplateResponse(request=request, name=template)
+
 
 @app.get("/dashboard", response_class=HTMLResponse)
 async def read_dashboard(request: Request):

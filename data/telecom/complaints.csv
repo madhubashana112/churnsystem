@@ -1,96 +1,98 @@
 comp_id,subscriber_id,category,logged_at,notes
-comp_1,sub_2,NETWORK,2026-07-26,Repeated call drops at the home address
-comp_2,sub_3,GENERAL,2026-07-14,General enquiry about the current plan
-comp_3,sub_5,GENERAL,2026-07-11,General enquiry about the current plan
-comp_4,sub_6,GENERAL,2026-07-07,General enquiry about the current plan
-comp_5,sub_7,BILLING,2026-06-29,Disputes the last bill amount
-comp_6,sub_7,BILLING,2026-06-20,Disputes the last bill amount
-comp_7,sub_9,BILLING,2026-06-14,Disputes the last bill amount
-comp_8,sub_11,BILLING,2026-06-30,Disputes the last bill amount
-comp_9,sub_11,BILLING,2026-08-08,Disputes the last bill amount
-comp_10,sub_11,NETWORK,2026-07-21,Repeated call drops at the home address
-comp_11,sub_13,NETWORK,2026-06-15,Repeated call drops at the home address
-comp_12,sub_14,MNP_PORT_OUT,2026-08-11,Asked for the porting authorisation code
-comp_13,sub_16,NETWORK,2026-07-20,Repeated call drops at the home address
-comp_14,sub_17,BILLING,2026-06-09,Disputes the last bill amount
-comp_15,sub_19,MNP_PORT_OUT,2026-06-17,Asked for the porting authorisation code
-comp_16,sub_19,BILLING,2026-09-02,Disputes the last bill amount
-comp_17,sub_19,MNP_PORT_OUT,2026-08-28,Asked for the porting authorisation code
-comp_18,sub_21,MNP_PORT_OUT,2026-08-19,Asked for the porting authorisation code
-comp_19,sub_22,MNP_PORT_OUT,2026-07-19,Asked for the porting authorisation code
-comp_20,sub_24,NETWORK,2026-07-01,Repeated call drops at the home address
-comp_21,sub_24,MNP_PORT_OUT,2026-08-31,Asked for the porting authorisation code
-comp_22,sub_24,NETWORK,2026-08-01,Repeated call drops at the home address
-comp_23,sub_25,MNP_PORT_OUT,2026-06-10,Asked for the porting authorisation code
-comp_24,sub_25,NETWORK,2026-06-08,Repeated call drops at the home address
-comp_25,sub_25,MNP_PORT_OUT,2026-07-17,Asked for the porting authorisation code
-comp_26,sub_27,BILLING,2026-07-31,Disputes the last bill amount
-comp_27,sub_28,BILLING,2026-09-01,Disputes the last bill amount
-comp_28,sub_30,MNP_PORT_OUT,2026-07-20,Asked for the porting authorisation code
-comp_29,sub_30,GENERAL,2026-08-22,General enquiry about the current plan
-comp_30,sub_30,MNP_PORT_OUT,2026-06-26,Asked for the porting authorisation code
-comp_31,sub_32,BILLING,2026-07-08,Disputes the last bill amount
-comp_32,sub_33,NETWORK,2026-07-27,Repeated call drops at the home address
-comp_33,sub_34,MNP_PORT_OUT,2026-06-24,Asked for the porting authorisation code
-comp_34,sub_35,BILLING,2026-08-19,Disputes the last bill amount
-comp_35,sub_43,BILLING,2026-08-14,Disputes the last bill amount
-comp_36,sub_43,NETWORK,2026-07-30,Repeated call drops at the home address
-comp_37,sub_43,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
-comp_38,sub_45,MNP_PORT_OUT,2026-06-11,Asked for the porting authorisation code
-comp_39,sub_45,MNP_PORT_OUT,2026-07-07,Asked for the porting authorisation code
-comp_40,sub_45,MNP_PORT_OUT,2026-08-29,Asked for the porting authorisation code
-comp_41,sub_46,BILLING,2026-08-26,Disputes the last bill amount
-comp_42,sub_48,BILLING,2026-06-12,Disputes the last bill amount
-comp_43,sub_50,NETWORK,2026-06-30,Repeated call drops at the home address
-comp_44,sub_50,NETWORK,2026-09-01,Repeated call drops at the home address
-comp_45,sub_50,NETWORK,2026-08-24,Repeated call drops at the home address
-comp_46,sub_51,NETWORK,2026-07-04,Repeated call drops at the home address
-comp_47,sub_53,GENERAL,2026-07-05,General enquiry about the current plan
-comp_48,sub_53,NETWORK,2026-07-14,Repeated call drops at the home address
-comp_49,sub_56,BILLING,2026-07-24,Disputes the last bill amount
-comp_50,sub_56,BILLING,2026-08-27,Disputes the last bill amount
-comp_51,sub_56,MNP_PORT_OUT,2026-06-23,Asked for the porting authorisation code
-comp_52,sub_59,BILLING,2026-08-14,Disputes the last bill amount
-comp_53,sub_59,BILLING,2026-07-17,Disputes the last bill amount
-comp_54,sub_59,MNP_PORT_OUT,2026-08-31,Asked for the porting authorisation code
-comp_55,sub_59,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
-comp_56,sub_59,NETWORK,2026-08-09,Repeated call drops at the home address
-comp_57,sub_60,MNP_PORT_OUT,2026-07-07,Asked for the porting authorisation code
-comp_58,sub_62,BILLING,2026-08-18,Disputes the last bill amount
-comp_59,sub_64,NETWORK,2026-06-11,Repeated call drops at the home address
-comp_60,sub_65,BILLING,2026-08-26,Disputes the last bill amount
-comp_61,sub_68,NETWORK,2026-08-15,Repeated call drops at the home address
-comp_62,sub_68,MNP_PORT_OUT,2026-06-12,Asked for the porting authorisation code
-comp_63,sub_68,NETWORK,2026-07-14,Repeated call drops at the home address
-comp_64,sub_69,MNP_PORT_OUT,2026-08-22,Asked for the porting authorisation code
-comp_65,sub_73,MNP_PORT_OUT,2026-07-23,Asked for the porting authorisation code
-comp_66,sub_73,BILLING,2026-07-11,Disputes the last bill amount
-comp_67,sub_73,MNP_PORT_OUT,2026-08-12,Asked for the porting authorisation code
-comp_68,sub_73,BILLING,2026-06-16,Disputes the last bill amount
-comp_69,sub_74,BILLING,2026-06-18,Disputes the last bill amount
-comp_70,sub_75,GENERAL,2026-08-22,General enquiry about the current plan
-comp_71,sub_78,NETWORK,2026-06-11,Repeated call drops at the home address
-comp_72,sub_78,NETWORK,2026-08-04,Repeated call drops at the home address
-comp_73,sub_78,GENERAL,2026-07-11,General enquiry about the current plan
-comp_74,sub_79,MNP_PORT_OUT,2026-07-03,Asked for the porting authorisation code
-comp_75,sub_80,NETWORK,2026-08-03,Repeated call drops at the home address
-comp_76,sub_83,MNP_PORT_OUT,2026-08-17,Asked for the porting authorisation code
-comp_77,sub_83,GENERAL,2026-07-22,General enquiry about the current plan
-comp_78,sub_83,BILLING,2026-06-27,Disputes the last bill amount
-comp_79,sub_83,BILLING,2026-09-05,Disputes the last bill amount
-comp_80,sub_84,BILLING,2026-09-05,Disputes the last bill amount
-comp_81,sub_84,BILLING,2026-07-25,Disputes the last bill amount
-comp_82,sub_85,MNP_PORT_OUT,2026-07-15,Asked for the porting authorisation code
-comp_83,sub_85,NETWORK,2026-06-21,Repeated call drops at the home address
-comp_84,sub_85,NETWORK,2026-07-25,Repeated call drops at the home address
-comp_85,sub_86,BILLING,2026-07-27,Disputes the last bill amount
-comp_86,sub_87,NETWORK,2026-06-09,Repeated call drops at the home address
-comp_87,sub_88,NETWORK,2026-09-01,Repeated call drops at the home address
-comp_88,sub_91,NETWORK,2026-07-10,Repeated call drops at the home address
-comp_89,sub_91,NETWORK,2026-07-29,Repeated call drops at the home address
-comp_90,sub_96,MNP_PORT_OUT,2026-08-07,Asked for the porting authorisation code
-comp_91,sub_97,NETWORK,2026-07-18,Repeated call drops at the home address
-comp_92,sub_99,BILLING,2026-09-02,Disputes the last bill amount
-comp_93,sub_99,BILLING,2026-07-10,Disputes the last bill amount
-comp_94,sub_99,BILLING,2026-09-05,Disputes the last bill amount
-comp_95,sub_100,GENERAL,2026-06-13,General enquiry about the current plan
+comp_1,sub_1,BILLING,2025-05-12,Signal keeps dropping at the home address
+comp_2,sub_2,MNP_PORT_OUT,2025-05-15,Threatening to cancel the connection this week
+comp_3,sub_2,MNP_PORT_OUT,2025-05-29,"Disputes the bill, says overcharged for data"
+comp_4,sub_2,BILLING,2025-04-08,Asked for the porting authorisation code
+comp_5,sub_3,MNP_PORT_OUT,2025-05-30,Signal keeps dropping at the home address
+comp_6,sub_4,NETWORK,2025-03-08,Asked for the porting authorisation code
+comp_7,sub_4,MNP_PORT_OUT,2025-04-27,"Competitor offered a cheaper bundle, considering MNP"
+comp_8,sub_4,NETWORK,2025-04-30,Wants to port out to another network
+comp_9,sub_5,MNP_PORT_OUT,2025-05-27,Asked for the porting authorisation code
+comp_10,sub_5,NETWORK,2025-03-14,"Competitor offered a cheaper bundle, considering MNP"
+comp_11,sub_6,MNP_PORT_OUT,2025-05-23,Signal keeps dropping at the home address
+comp_12,sub_6,MNP_PORT_OUT,2025-05-26,Escalated: no response on the previous complaint
+comp_13,sub_7,MNP_PORT_OUT,2025-04-28,"Third complaint about dropped calls, still unresolved"
+comp_14,sub_8,NETWORK,2025-04-11,"Third complaint about dropped calls, still unresolved"
+comp_15,sub_9,NETWORK,2025-03-09,Signal keeps dropping at the home address
+comp_16,sub_9,MNP_PORT_OUT,2025-05-09,Threatening to cancel the connection this week
+comp_17,sub_9,BILLING,2025-05-15,Threatening to cancel the connection this week
+comp_18,sub_9,BILLING,2025-05-10,Escalated: no response on the previous complaint
+comp_19,sub_10,NETWORK,2025-04-14,Threatening to cancel the connection this week
+comp_20,sub_10,MNP_PORT_OUT,2025-03-12,"Competitor offered a cheaper bundle, considering MNP"
+comp_21,sub_10,MNP_PORT_OUT,2025-05-11,Escalated: no response on the previous complaint
+comp_22,sub_11,BILLING,2025-05-05,Threatening to cancel the connection this week
+comp_23,sub_11,MNP_PORT_OUT,2025-03-05,Signal keeps dropping at the home address
+comp_24,sub_11,MNP_PORT_OUT,2025-03-25,"Disputes the bill, says overcharged for data"
+comp_25,sub_11,BILLING,2025-03-29,Wants to port out to another network
+comp_26,sub_13,GENERAL,2025-04-17,Signal keeps dropping at the home address
+comp_27,sub_13,NETWORK,2025-04-24,Threatening to cancel the connection this week
+comp_28,sub_14,NETWORK,2025-04-11,Signal keeps dropping at the home address
+comp_29,sub_14,MNP_PORT_OUT,2025-04-19,Asked for the porting authorisation code
+comp_30,sub_17,BILLING,2025-04-01,Wants to port out to another network
+comp_31,sub_17,MNP_PORT_OUT,2025-04-19,Threatening to cancel the connection this week
+comp_32,sub_19,NETWORK,2025-03-11,Escalated: no response on the previous complaint
+comp_33,sub_20,MNP_PORT_OUT,2025-04-02,Escalated: no response on the previous complaint
+comp_34,sub_20,NETWORK,2025-04-27,Asked for the porting authorisation code
+comp_35,sub_20,MNP_PORT_OUT,2025-05-03,Asked for the porting authorisation code
+comp_36,sub_20,MNP_PORT_OUT,2025-04-14,Wants to port out to another network
+comp_37,sub_21,GENERAL,2025-05-07,Asked for the porting authorisation code
+comp_38,sub_22,MNP_PORT_OUT,2025-05-15,"Third complaint about dropped calls, still unresolved"
+comp_39,sub_23,NETWORK,2025-04-14,Threatening to cancel the connection this week
+comp_40,sub_23,BILLING,2025-05-19,Signal keeps dropping at the home address
+comp_41,sub_24,MNP_PORT_OUT,2025-05-07,Signal keeps dropping at the home address
+comp_42,sub_24,BILLING,2025-03-20,Asked for the porting authorisation code
+comp_43,sub_25,NETWORK,2025-04-18,Asked for the porting authorisation code
+comp_44,sub_25,NETWORK,2025-05-14,"Third complaint about dropped calls, still unresolved"
+comp_45,sub_25,MNP_PORT_OUT,2025-05-09,Signal keeps dropping at the home address
+comp_46,sub_25,BILLING,2025-05-29,Wants to port out to another network
+comp_47,sub_28,MNP_PORT_OUT,2025-04-27,General enquiry about the current plan
+comp_48,sub_31,GENERAL,2025-04-14,Enquiry about upgrading the handset
+comp_49,sub_32,GENERAL,2025-04-24,Wants to change the billing date
+comp_50,sub_34,MNP_PORT_OUT,2025-05-19,Asked about data rollover rules
+comp_51,sub_34,GENERAL,2025-05-22,Wants to change the billing date
+comp_52,sub_34,BILLING,2025-03-08,Query on international roaming rates
+comp_53,sub_36,NETWORK,2025-04-26,Enquiry about upgrading the handset
+comp_54,sub_41,MNP_PORT_OUT,2025-04-12,Asked about data rollover rules
+comp_55,sub_41,GENERAL,2025-03-27,Requested an itemised bill copy
+comp_56,sub_41,BILLING,2025-05-28,Enquiry about upgrading the handset
+comp_57,sub_42,NETWORK,2025-05-09,Query on international roaming rates
+comp_58,sub_45,MNP_PORT_OUT,2025-03-19,Asked how to check the remaining balance
+comp_59,sub_48,NETWORK,2025-05-15,Asked how to check the remaining balance
+comp_60,sub_49,MNP_PORT_OUT,2025-05-18,Query on international roaming rates
+comp_61,sub_50,GENERAL,2025-04-21,Requested an itemised bill copy
+comp_62,sub_53,GENERAL,2025-04-21,General enquiry about the current plan
+comp_63,sub_55,BILLING,2025-03-25,Asked about data rollover rules
+comp_64,sub_59,BILLING,2025-05-12,General enquiry about the current plan
+comp_65,sub_60,BILLING,2025-03-08,Requested an itemised bill copy
+comp_66,sub_61,NETWORK,2025-04-16,Asked how to check the remaining balance
+comp_67,sub_61,NETWORK,2025-05-28,Wants to change the billing date
+comp_68,sub_61,NETWORK,2025-04-12,Requested an itemised bill copy
+comp_69,sub_61,MNP_PORT_OUT,2025-03-10,Enquiry about upgrading the handset
+comp_70,sub_63,NETWORK,2025-04-23,Enquiry about upgrading the handset
+comp_71,sub_65,NETWORK,2025-03-14,Enquiry about upgrading the handset
+comp_72,sub_66,BILLING,2025-04-28,Asked about data rollover rules
+comp_73,sub_68,BILLING,2025-04-16,Query on international roaming rates
+comp_74,sub_70,GENERAL,2025-04-24,Query on international roaming rates
+comp_75,sub_73,MNP_PORT_OUT,2025-03-24,Wants to change the billing date
+comp_76,sub_76,MNP_PORT_OUT,2025-05-24,Wants to change the billing date
+comp_77,sub_76,MNP_PORT_OUT,2025-05-14,Query on international roaming rates
+comp_78,sub_80,MNP_PORT_OUT,2025-03-25,Requested an itemised bill copy
+comp_79,sub_80,NETWORK,2025-03-10,Wants to change the billing date
+comp_80,sub_83,NETWORK,2025-05-03,Wants to change the billing date
+comp_81,sub_84,NETWORK,2025-04-05,Wants to change the billing date
+comp_82,sub_84,NETWORK,2025-05-18,Wants to change the billing date
+comp_83,sub_88,NETWORK,2025-05-29,Requested an itemised bill copy
+comp_84,sub_88,MNP_PORT_OUT,2025-04-28,Query on international roaming rates
+comp_85,sub_88,BILLING,2025-04-06,Requested an itemised bill copy
+comp_86,sub_89,NETWORK,2025-04-29,General enquiry about the current plan
+comp_87,sub_92,GENERAL,2025-05-12,General enquiry about the current plan
+comp_88,sub_94,BILLING,2025-05-21,Asked how to check the remaining balance
+comp_89,sub_94,BILLING,2025-04-14,Asked how to check the remaining balance
+comp_90,sub_95,BILLING,2025-03-27,Query on international roaming rates
+comp_91,sub_95,GENERAL,2025-05-21,Enquiry about upgrading the handset
+comp_92,sub_96,MNP_PORT_OUT,2025-05-19,Query on international roaming rates
+comp_93,sub_97,NETWORK,2025-05-21,General enquiry about the current plan
+comp_94,sub_97,MNP_PORT_OUT,2025-05-30,Enquiry about upgrading the handset
+comp_95,sub_98,NETWORK,2025-03-13,General enquiry about the current plan
+comp_96,sub_99,BILLING,2025-06-01,Wants to change the billing date
+comp_97,sub_99,NETWORK,2025-04-28,Asked how to check the remaining balance

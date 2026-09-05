@@ -25,3 +25,5 @@ class AnalysisSnapshot(BaseModel):
     schema_mapping: SchemaMapping
     predictions: List[Dict[str, Any]]
     source_files: List[SourceFile] = []
+    # Sector KPI cards, computed at analysis time from the features.
+    sector_kpis: Dict[str, Any] = {}

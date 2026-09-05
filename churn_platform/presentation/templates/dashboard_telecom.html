@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block page_title %}Telecom churn — Churn AI{% endblock %}
+{% block heading %}Telecom retention overview{% endblock %}
+
+{% block sector_kpis %}
+                <section class="card fade-in" id="section-sector">
+                    <div class="card-head">
+                        <div>
+                            <h3>Telecom signals</h3>
+                            <div class="card-sub">Metrics specific to this vertical, from the latest run</div>
+                        </div>
+                        <div class="card-head-actions">
+                            <span class="badge badge-accent">Telecom</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="stat-grid" id="sector-kpi-grid">
+                        <article class="stat" style="--stat-accent:var(--critical);--stat-soft:var(--critical-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-signal"></use></svg></span>
+                                <span class="stat-label">Dropped-call rate</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="0">—</div>
+                            <div class="stat-foot" data-kpi-hint="0">At-risk cohort against the base</div>
+                        </article>
+                        <article class="stat" style="--stat-accent:var(--high);--stat-soft:var(--high-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-logout"></use></svg></span>
+                                <span class="stat-label">Port-out enquiries</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="1">—</div>
+                            <div class="stat-foot" data-kpi-hint="1">MNP requests raised</div>
+                        </article>
+                        <article class="stat" style="--stat-accent:var(--accent-text);--stat-soft:var(--accent-soft)">
+                            <div class="stat-top">
+                                <span class="stat-ico"><svg><use href="#i-target"></use></svg></span>
+                                <span class="stat-label">Worst region</span>
+                            </div>
+                            <div class="stat-value" data-kpi-value="2">—</div>
+                            <div class="stat-foot" data-kpi-hint="2">Highest share of at-risk subscribers</div>
+                        </article>
+                        </div>
+                    </div>
+                </section>
+{% endblock %}

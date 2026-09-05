@@ -121,6 +121,42 @@ Set `DASHSCOPE_API_KEY` in the Vercel project's environment variables to enable
 the Qwen path. Without it the deployment runs on the local engine, which needs
 no network access and no key.
 
+## Tests
+
+```bash
+pytest
+```
+
+56 tests, none touching the network. Feature tests use hand-built DataFrames with
+hand-computable expected values rather than the generated fixtures — asserting
+against generated data only proves the two agree, not that either is right.
+
+Config lives in `pytest.ini`, not `pyproject.toml`: adding a `pyproject.toml`
+makes Vercel's Python build switch from `requirements.txt` to `uv lock`, which
+then fails for want of a `[project]` table.
+
+## Ingestion
+
+CSV and Excel are both accepted. A workbook is expanded sheet by sheet, each
+becoming its own table named `workbook.xlsx::SheetName`, so one `.xlsx` can carry
+everything a CSV user would upload as separate files. One unreadable file among
+several is reported and skipped rather than failing the request.
+
+## Features
+
+The synthesizer is sector-agnostic — it sees a `SchemaMapping`, not a vertical —
+and emits per child table: row counts, recency, rolling 7d/30d windows, an
+activity velocity comparing the last week against the prior month, a failure rate
+from status-like columns, and a keyword churn score from free text.
+
+Recency is anchored to `max(timestamp)` in the data, never the wall clock, so
+fixtures frozen at a reference date stay meaningful however long afterwards they
+are read.
+
+`sector_feature_enrichers` then adds vertical-specific maths as a post-step:
+balance drain and P2P failure streaks (FinTech), recharge cadence (Telecom),
+export ratio (SaaS).
+
 ## Scoring engines
 
 The platform ships with two interchangeable engines behind the same interfaces,
@@ -172,6 +208,9 @@ python generate_mock_data.py
 - Dark and light themes, following the system preference and remembered per browser.
 - Drag-and-drop ingestion, or one click to run the bundled sample dataset.
 - Risk-tier and probability-band charts, churn-driver frequency, and channel/action mix.
+- Per-sector KPI cards at `/dashboard/{sector}`: MRR at risk, login velocity and
+  feature drop-off (SaaS); dropped-call rate, port-out enquiries and worst region
+  (Telecom); liquidity drain, dormant accounts and P2P failure streaks (FinTech).
 - Searchable, sortable, paginated at-risk table with per-account retention playbooks.
 - Keyboard: `/` focuses search, `←`/`→` page through playbooks, `Esc` closes the drawer.
 - An engine badge names the engine that produced the current results, and the

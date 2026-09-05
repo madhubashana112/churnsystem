@@ -27,15 +27,19 @@ from churn_platform.application.use_cases.execute_sector_analysis import Execute
 from churn_platform.domain.models.analysis_snapshot import AnalysisSnapshot, SourceFile
 from churn_platform.domain.models.tenant import Tenant
 from churn_platform.infrastructure.samples import sample_catalog
+from churn_platform.infrastructure.parsers.file_ingestion import read_uploads
+from churn_platform.config import get_settings
+from churn_platform.application.sector_kpis import compute as compute_sector_kpis
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/upload", tags=["Upload"])
 
-# Batch limit for the MVP — each entity costs one model call on the Qwen path.
-MAX_ENTITIES = 20
-# The local engine is free and instant, so it can score the whole cohort.
-MAX_ENTITIES_LOCAL = 200
+_settings = get_settings()
+# Each batch costs one model call on the Qwen path, so it is capped far lower
+# than the local engine, which is free and scores the whole cohort.
+MAX_ENTITIES = _settings.max_entities
+MAX_ENTITIES_LOCAL = _settings.max_entities_local
 
 
 async def _resolve_tenant(tenant_id: str) -> Tenant:
@@ -128,7 +132,9 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
 
     schema, schema_engine, schema_reason = await _resolve_schema(file_samples, mode)
 
-    features = SynthesizeFeaturesUseCase(get_feature_synthesizer()).execute(schema, dataframes)
+    features = SynthesizeFeaturesUseCase(get_feature_synthesizer()).execute(
+        schema, dataframes, sector=tenant.sector
+    )
     if not features:
         raise HTTPException(
             status_code=422,
@@ -147,6 +153,7 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
     reason = score_reason or schema_reason
 
     snapshot = AnalysisSnapshot(
+        sector_kpis=compute_sector_kpis(tenant.sector, features, predictions),
         tenant_id=tenant.tenant_id,
         source=source,
         engine=engine,
@@ -168,23 +175,11 @@ async def _run_pipeline(tenant: Tenant, dataframes: Dict[str, pd.DataFrame],
         "source": snapshot.source,
         "engine": engine,
         "engine_reason": reason,
+        "sector_kpis": snapshot.sector_kpis,
         "feature_count": len(features[0].features) if features else 0,
         "entities_total": len(features),
         "entities_scored": len(predictions),
     }
-
-
-def _read_table(filename: str, contents: bytes) -> pd.DataFrame:
-    """Parse one upload, rejecting anything that yields no usable rows."""
-    if filename.lower().endswith((".xlsx", ".xls")):
-        df = pd.read_excel(io.BytesIO(contents))
-    else:
-        df = pd.read_csv(io.BytesIO(contents))
-
-    # pandas happily turns some binary blobs into a 0-row frame; that is not a table.
-    if df.shape[0] == 0 or df.shape[1] == 0:
-        raise ValueError("Parsed to an empty table")
-    return df
 
 
 @router.post("/analyze")
@@ -195,15 +190,10 @@ async def upload_and_analyze(
 ):
     tenant = await _resolve_tenant(tenant_id)
 
-    dataframes: Dict[str, pd.DataFrame] = {}
-    unreadable: List[str] = []
-
-    for file in files:
-        contents = await file.read()
-        try:
-            dataframes[file.filename] = _read_table(file.filename, contents)
-        except Exception:
-            unreadable.append(file.filename)
+    # Excel workbooks expand to one table per sheet, so a single .xlsx can carry
+    # everything a CSV user would upload as separate files.
+    uploads = [(f.filename, await f.read()) for f in files]
+    dataframes, unreadable = read_uploads(uploads)
 
     if not dataframes:
         raise HTTPException(

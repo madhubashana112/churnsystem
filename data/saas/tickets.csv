@@ -1,151 +1,189 @@
 ticket_id,user_id,subject,sentiment,status,opened_at
-tkt_1,usr_1,Cancel subscription,Neutral,CLOSED,2026-08-02
-tkt_2,usr_1,How do I invite a teammate,Neutral,OPEN,2026-08-20
-tkt_3,usr_1,Cannot login,Neutral,OPEN,2026-06-23
-tkt_4,usr_2,Slow performance,Neutral,OPEN,2026-06-26
-tkt_5,usr_3,Cancel subscription,Very Negative,OPEN,2026-06-12
-tkt_6,usr_3,Requesting refund,Very Negative,OPEN,2026-06-10
-tkt_7,usr_3,Competitor is cheaper,Very Negative,CLOSED,2026-07-13
-tkt_8,usr_3,Export not working,Very Negative,OPEN,2026-07-07
-tkt_9,usr_6,Cancel subscription,Negative,OPEN,2026-08-17
-tkt_10,usr_6,Cancel subscription,Negative,OPEN,2026-07-05
-tkt_11,usr_7,Cannot login,Neutral,OPEN,2026-09-04
-tkt_12,usr_8,Requesting refund,Neutral,CLOSED,2026-06-22
-tkt_13,usr_8,Competitor is cheaper,Negative,OPEN,2026-06-14
-tkt_14,usr_8,Competitor is cheaper,Neutral,CLOSED,2026-08-27
-tkt_15,usr_10,Export not working,Very Negative,OPEN,2026-08-15
-tkt_16,usr_10,Requesting refund,Very Negative,CLOSED,2026-08-12
-tkt_17,usr_10,Export not working,Negative,OPEN,2026-08-10
-tkt_18,usr_11,Requesting refund,Very Negative,OPEN,2026-08-22
-tkt_19,usr_12,Competitor is cheaper,Negative,CLOSED,2026-08-21
-tkt_20,usr_13,Competitor is cheaper,Negative,CLOSED,2026-06-08
-tkt_21,usr_13,Competitor is cheaper,Very Negative,OPEN,2026-09-05
-tkt_22,usr_14,Competitor is cheaper,Neutral,OPEN,2026-07-13
-tkt_23,usr_14,Cancel subscription,Neutral,OPEN,2026-08-16
-tkt_24,usr_17,Slow performance,Negative,OPEN,2026-06-30
-tkt_25,usr_17,Requesting refund,Very Negative,CLOSED,2026-06-12
-tkt_26,usr_17,Export not working,Neutral,OPEN,2026-07-06
-tkt_27,usr_18,Requesting refund,Negative,CLOSED,2026-06-23
-tkt_28,usr_19,Cancel subscription,Neutral,OPEN,2026-08-23
-tkt_29,usr_19,Competitor is cheaper,Neutral,OPEN,2026-06-15
-tkt_30,usr_19,Requesting refund,Very Negative,CLOSED,2026-06-18
-tkt_31,usr_19,Slow performance,Very Negative,OPEN,2026-09-04
-tkt_32,usr_19,Export not working,Negative,CLOSED,2026-06-30
-tkt_33,usr_19,Requesting refund,Negative,CLOSED,2026-08-08
-tkt_34,usr_20,Cannot login,Neutral,CLOSED,2026-06-08
-tkt_35,usr_20,Cannot login,Negative,OPEN,2026-09-03
-tkt_36,usr_20,Competitor is cheaper,Negative,CLOSED,2026-06-17
-tkt_37,usr_22,Requesting refund,Very Negative,CLOSED,2026-07-10
-tkt_38,usr_22,Export not working,Neutral,CLOSED,2026-07-20
-tkt_39,usr_22,Cannot login,Very Negative,CLOSED,2026-08-02
-tkt_40,usr_23,Requesting refund,Negative,CLOSED,2026-07-26
-tkt_41,usr_23,Competitor is cheaper,Negative,OPEN,2026-06-13
-tkt_42,usr_23,Requesting refund,Neutral,OPEN,2026-07-25
-tkt_43,usr_23,How do I invite a teammate,Neutral,OPEN,2026-08-31
-tkt_44,usr_23,Competitor is cheaper,Very Negative,OPEN,2026-06-16
-tkt_45,usr_24,Competitor is cheaper,Neutral,OPEN,2026-08-17
-tkt_46,usr_24,Requesting refund,Negative,OPEN,2026-07-29
-tkt_47,usr_24,How do I invite a teammate,Very Negative,OPEN,2026-07-15
-tkt_48,usr_25,How do I invite a teammate,Neutral,OPEN,2026-07-13
-tkt_49,usr_25,Requesting refund,Negative,CLOSED,2026-09-03
-tkt_50,usr_25,Competitor is cheaper,Negative,CLOSED,2026-08-31
-tkt_51,usr_27,Cannot login,Very Negative,OPEN,2026-09-05
-tkt_52,usr_27,Cannot login,Neutral,OPEN,2026-08-06
-tkt_53,usr_28,Slow performance,Neutral,CLOSED,2026-06-30
-tkt_54,usr_29,How do I invite a teammate,Negative,OPEN,2026-08-15
-tkt_55,usr_30,How do I invite a teammate,Neutral,CLOSED,2026-09-01
-tkt_56,usr_30,Competitor is cheaper,Neutral,CLOSED,2026-07-23
-tkt_57,usr_31,Cannot login,Negative,OPEN,2026-06-11
-tkt_58,usr_32,Competitor is cheaper,Very Negative,CLOSED,2026-08-04
-tkt_59,usr_33,Competitor is cheaper,Negative,CLOSED,2026-08-08
-tkt_60,usr_35,How do I invite a teammate,Neutral,CLOSED,2026-07-28
-tkt_61,usr_38,Cancel subscription,Neutral,OPEN,2026-07-18
-tkt_62,usr_39,Cannot login,Neutral,CLOSED,2026-08-07
-tkt_63,usr_40,Cannot login,Negative,OPEN,2026-09-02
-tkt_64,usr_40,Export not working,Neutral,OPEN,2026-07-07
-tkt_65,usr_40,Competitor is cheaper,Very Negative,OPEN,2026-08-19
-tkt_66,usr_42,Cancel subscription,Very Negative,OPEN,2026-06-22
-tkt_67,usr_42,Competitor is cheaper,Very Negative,OPEN,2026-07-05
-tkt_68,usr_42,Requesting refund,Very Negative,OPEN,2026-07-15
-tkt_69,usr_42,Cancel subscription,Very Negative,CLOSED,2026-07-26
-tkt_70,usr_42,Competitor is cheaper,Negative,OPEN,2026-07-21
-tkt_71,usr_42,Cancel subscription,Very Negative,OPEN,2026-08-02
-tkt_72,usr_45,Competitor is cheaper,Neutral,OPEN,2026-08-14
-tkt_73,usr_45,Competitor is cheaper,Negative,OPEN,2026-07-15
-tkt_74,usr_46,Competitor is cheaper,Neutral,CLOSED,2026-08-07
-tkt_75,usr_46,Cannot login,Neutral,CLOSED,2026-08-04
-tkt_76,usr_49,Competitor is cheaper,Neutral,OPEN,2026-06-11
-tkt_77,usr_49,Competitor is cheaper,Neutral,CLOSED,2026-08-15
-tkt_78,usr_49,Slow performance,Neutral,CLOSED,2026-08-23
-tkt_79,usr_52,Slow performance,Negative,CLOSED,2026-08-28
-tkt_80,usr_52,Cancel subscription,Negative,CLOSED,2026-07-12
-tkt_81,usr_52,Slow performance,Negative,CLOSED,2026-07-22
-tkt_82,usr_53,Export not working,Very Negative,OPEN,2026-06-08
-tkt_83,usr_54,Export not working,Neutral,CLOSED,2026-07-23
-tkt_84,usr_55,Cancel subscription,Very Negative,CLOSED,2026-07-05
-tkt_85,usr_55,Cannot login,Negative,OPEN,2026-06-26
-tkt_86,usr_56,Slow performance,Neutral,OPEN,2026-09-05
-tkt_87,usr_57,Export not working,Negative,CLOSED,2026-07-31
-tkt_88,usr_57,Cancel subscription,Negative,OPEN,2026-09-04
-tkt_89,usr_58,Slow performance,Very Negative,CLOSED,2026-08-09
-tkt_90,usr_59,Slow performance,Neutral,CLOSED,2026-06-28
-tkt_91,usr_59,Competitor is cheaper,Very Negative,OPEN,2026-07-17
-tkt_92,usr_60,Cancel subscription,Neutral,CLOSED,2026-07-07
-tkt_93,usr_61,Cancel subscription,Negative,CLOSED,2026-08-31
-tkt_94,usr_61,Cancel subscription,Neutral,OPEN,2026-08-04
-tkt_95,usr_62,How do I invite a teammate,Neutral,OPEN,2026-08-01
-tkt_96,usr_62,Export not working,Neutral,OPEN,2026-08-02
-tkt_97,usr_62,Export not working,Neutral,OPEN,2026-08-22
-tkt_98,usr_63,Competitor is cheaper,Neutral,OPEN,2026-08-04
-tkt_99,usr_63,Export not working,Neutral,OPEN,2026-07-27
-tkt_100,usr_63,Slow performance,Neutral,OPEN,2026-08-05
-tkt_101,usr_65,Requesting refund,Neutral,OPEN,2026-08-31
-tkt_102,usr_65,Requesting refund,Neutral,CLOSED,2026-08-21
-tkt_103,usr_65,Cannot login,Negative,CLOSED,2026-08-08
-tkt_104,usr_66,How do I invite a teammate,Very Negative,CLOSED,2026-06-13
-tkt_105,usr_67,Slow performance,Negative,CLOSED,2026-08-27
-tkt_106,usr_67,Export not working,Negative,OPEN,2026-06-11
-tkt_107,usr_68,Requesting refund,Negative,CLOSED,2026-06-25
-tkt_108,usr_72,How do I invite a teammate,Neutral,CLOSED,2026-07-10
-tkt_109,usr_72,How do I invite a teammate,Very Negative,OPEN,2026-08-10
-tkt_110,usr_72,Cannot login,Very Negative,OPEN,2026-08-03
-tkt_111,usr_73,Requesting refund,Very Negative,CLOSED,2026-08-03
-tkt_112,usr_73,Competitor is cheaper,Neutral,CLOSED,2026-08-25
-tkt_113,usr_74,Slow performance,Negative,OPEN,2026-08-21
-tkt_114,usr_74,Cannot login,Very Negative,CLOSED,2026-06-30
-tkt_115,usr_74,Cannot login,Neutral,OPEN,2026-07-27
-tkt_116,usr_75,How do I invite a teammate,Neutral,CLOSED,2026-07-24
-tkt_117,usr_75,How do I invite a teammate,Neutral,CLOSED,2026-06-24
-tkt_118,usr_75,Export not working,Neutral,CLOSED,2026-07-09
-tkt_119,usr_77,Requesting refund,Neutral,OPEN,2026-09-01
-tkt_120,usr_79,Cannot login,Neutral,OPEN,2026-06-16
-tkt_121,usr_81,Requesting refund,Negative,CLOSED,2026-07-05
-tkt_122,usr_81,Competitor is cheaper,Neutral,CLOSED,2026-07-06
-tkt_123,usr_83,Cancel subscription,Negative,OPEN,2026-09-04
-tkt_124,usr_83,Export not working,Neutral,OPEN,2026-07-28
-tkt_125,usr_85,Export not working,Neutral,CLOSED,2026-08-05
-tkt_126,usr_85,Export not working,Neutral,CLOSED,2026-06-22
-tkt_127,usr_86,How do I invite a teammate,Neutral,CLOSED,2026-06-11
-tkt_128,usr_86,Cannot login,Negative,OPEN,2026-07-21
-tkt_129,usr_87,Slow performance,Negative,OPEN,2026-08-11
-tkt_130,usr_90,Cannot login,Neutral,CLOSED,2026-07-06
-tkt_131,usr_91,Cancel subscription,Very Negative,OPEN,2026-07-29
-tkt_132,usr_92,Slow performance,Neutral,CLOSED,2026-08-27
-tkt_133,usr_92,Slow performance,Neutral,OPEN,2026-08-31
-tkt_134,usr_92,Competitor is cheaper,Neutral,OPEN,2026-09-04
-tkt_135,usr_93,Slow performance,Neutral,OPEN,2026-09-01
-tkt_136,usr_94,Slow performance,Negative,CLOSED,2026-07-13
-tkt_137,usr_94,Cancel subscription,Neutral,CLOSED,2026-06-16
-tkt_138,usr_94,How do I invite a teammate,Neutral,CLOSED,2026-07-06
-tkt_139,usr_95,Cannot login,Neutral,CLOSED,2026-08-04
-tkt_140,usr_96,Cancel subscription,Very Negative,OPEN,2026-06-22
-tkt_141,usr_98,Export not working,Neutral,CLOSED,2026-08-14
-tkt_142,usr_98,Export not working,Very Negative,CLOSED,2026-08-27
-tkt_143,usr_98,Requesting refund,Neutral,OPEN,2026-06-26
-tkt_144,usr_98,Export not working,Neutral,CLOSED,2026-07-15
-tkt_145,usr_99,Cannot login,Neutral,OPEN,2026-08-23
-tkt_146,usr_99,Slow performance,Neutral,CLOSED,2026-07-10
-tkt_147,usr_100,Slow performance,Very Negative,OPEN,2026-07-20
-tkt_148,usr_100,Cancel subscription,Very Negative,CLOSED,2026-06-20
-tkt_149,usr_100,Competitor is cheaper,Negative,CLOSED,2026-06-20
-tkt_150,usr_100,Competitor is cheaper,Very Negative,OPEN,2026-08-18
+tkt_1,usr_1,"Very disappointed, considering alternatives",Negative,OPEN,2025-04-05
+tkt_2,usr_1,Overcharged again on this month's invoice,Very Negative,OPEN,2025-03-28
+tkt_3,usr_1,No response on my escalated ticket for a week,Negative,OPEN,2025-04-01
+tkt_4,usr_2,Requesting refund for the last two invoices,Negative,OPEN,2025-06-01
+tkt_5,usr_2,No response on my escalated ticket for a week,Negative,OPEN,2025-05-09
+tkt_6,usr_2,How do I close my account and export everything,Very Negative,OPEN,2025-05-07
+tkt_7,usr_2,Competitor is cheaper for the same seats,Negative,CLOSED,2025-05-04
+tkt_8,usr_3,How do I set up SSO,Neutral,OPEN,2025-03-05
+tkt_9,usr_3,How do I close my account and export everything,Negative,OPEN,2025-05-16
+tkt_10,usr_3,Requesting refund for the last two invoices,Negative,CLOSED,2025-05-08
+tkt_11,usr_4,We are switching to another vendor next month,Negative,CLOSED,2025-04-01
+tkt_12,usr_4,Cancel subscription at the end of this term,Very Negative,OPEN,2025-05-01
+tkt_13,usr_5,Cannot login from the mobile app,Very Negative,CLOSED,2025-04-02
+tkt_14,usr_6,We are switching to another vendor next month,Negative,OPEN,2025-03-23
+tkt_15,usr_6,"Reports are unusable, exports keep failing",Negative,OPEN,2025-04-17
+tkt_16,usr_6,How do I close my account and export everything,Negative,OPEN,2025-03-22
+tkt_17,usr_6,Third time reporting this and still not fixed,Neutral,OPEN,2025-05-18
+tkt_18,usr_7,How do I close my account and export everything,Neutral,OPEN,2025-04-25
+tkt_19,usr_7,How do I close my account and export everything,Very Negative,OPEN,2025-05-01
+tkt_20,usr_8,Requesting refund for the last two invoices,Neutral,OPEN,2025-05-15
+tkt_21,usr_8,We are switching to another vendor next month,Negative,CLOSED,2025-03-21
+tkt_22,usr_9,How do I close my account and export everything,Negative,OPEN,2025-05-12
+tkt_23,usr_9,"Very disappointed, considering alternatives",Neutral,OPEN,2025-03-25
+tkt_24,usr_9,Cancel subscription at the end of this term,Negative,OPEN,2025-03-23
+tkt_25,usr_9,No response on my escalated ticket for a week,Very Negative,OPEN,2025-05-17
+tkt_26,usr_9,No response on my escalated ticket for a week,Very Negative,CLOSED,2025-03-31
+tkt_27,usr_10,Competitor is cheaper for the same seats,Neutral,OPEN,2025-05-08
+tkt_28,usr_10,"Very disappointed, considering alternatives",Neutral,OPEN,2025-04-09
+tkt_29,usr_10,Overcharged again on this month's invoice,Negative,CLOSED,2025-04-27
+tkt_30,usr_10,Question about the reporting filters,Neutral,OPEN,2025-04-12
+tkt_31,usr_10,Where do I change the billing address,Very Negative,CLOSED,2025-04-01
+tkt_32,usr_11,How do I invite a teammate,Negative,OPEN,2025-05-11
+tkt_33,usr_11,Question about the reporting filters,Very Negative,OPEN,2025-05-10
+tkt_34,usr_12,Third time reporting this and still not fixed,Negative,OPEN,2025-04-12
+tkt_35,usr_12,Requesting refund for the last two invoices,Negative,OPEN,2025-05-20
+tkt_36,usr_12,"Reports are unusable, exports keep failing",Negative,CLOSED,2025-05-21
+tkt_37,usr_12,"Reports are unusable, exports keep failing",Very Negative,CLOSED,2025-05-30
+tkt_38,usr_12,"Very disappointed, considering alternatives",Very Negative,OPEN,2025-03-19
+tkt_39,usr_12,Where do I change the billing address,Negative,CLOSED,2025-03-08
+tkt_40,usr_13,Where do I change the billing address,Very Negative,CLOSED,2025-03-15
+tkt_41,usr_13,"Reports are unusable, exports keep failing",Neutral,OPEN,2025-03-08
+tkt_42,usr_13,Third time reporting this and still not fixed,Negative,OPEN,2025-04-11
+tkt_43,usr_13,Competitor is cheaper for the same seats,Neutral,CLOSED,2025-03-28
+tkt_44,usr_13,Requesting refund for the last two invoices,Neutral,OPEN,2025-05-20
+tkt_45,usr_13,Cancel subscription at the end of this term,Very Negative,OPEN,2025-04-09
+tkt_46,usr_14,Requesting refund for the last two invoices,Negative,CLOSED,2025-04-13
+tkt_47,usr_14,Feature request: scheduled reports,Negative,OPEN,2025-05-10
+tkt_48,usr_14,"Very disappointed, considering alternatives",Negative,OPEN,2025-03-17
+tkt_49,usr_14,Requesting refund for the last two invoices,Negative,OPEN,2025-05-24
+tkt_50,usr_15,Requesting refund for the last two invoices,Negative,CLOSED,2025-05-30
+tkt_51,usr_15,No response on my escalated ticket for a week,Negative,CLOSED,2025-05-17
+tkt_52,usr_15,How do I set up SSO,Neutral,OPEN,2025-04-05
+tkt_53,usr_16,Overcharged again on this month's invoice,Neutral,CLOSED,2025-03-24
+tkt_54,usr_17,Third time reporting this and still not fixed,Negative,OPEN,2025-05-11
+tkt_55,usr_17,Cancel subscription at the end of this term,Very Negative,CLOSED,2025-05-16
+tkt_56,usr_17,Requesting refund for the last two invoices,Negative,OPEN,2025-03-08
+tkt_57,usr_18,Competitor is cheaper for the same seats,Negative,OPEN,2025-04-17
+tkt_58,usr_18,"Very disappointed, considering alternatives",Negative,OPEN,2025-05-09
+tkt_59,usr_19,No response on my escalated ticket for a week,Negative,CLOSED,2025-04-23
+tkt_60,usr_19,How do I set up SSO,Negative,OPEN,2025-04-28
+tkt_61,usr_19,Cancel subscription at the end of this term,Very Negative,CLOSED,2025-05-20
+tkt_62,usr_19,Feature request: scheduled reports,Neutral,OPEN,2025-05-13
+tkt_63,usr_20,Competitor is cheaper for the same seats,Very Negative,CLOSED,2025-03-25
+tkt_64,usr_20,"Very disappointed, considering alternatives",Negative,OPEN,2025-03-28
+tkt_65,usr_21,Competitor is cheaper for the same seats,Very Negative,OPEN,2025-04-02
+tkt_66,usr_21,We are switching to another vendor next month,Negative,CLOSED,2025-05-11
+tkt_67,usr_21,No response on my escalated ticket for a week,Neutral,OPEN,2025-04-29
+tkt_68,usr_21,"Reports are unusable, exports keep failing",Negative,CLOSED,2025-03-11
+tkt_69,usr_22,"Reports are unusable, exports keep failing",Neutral,CLOSED,2025-05-25
+tkt_70,usr_22,Competitor is cheaper for the same seats,Negative,OPEN,2025-04-06
+tkt_71,usr_23,How do I close my account and export everything,Negative,OPEN,2025-03-14
+tkt_72,usr_23,Cancel subscription at the end of this term,Very Negative,CLOSED,2025-04-24
+tkt_73,usr_23,How do I close my account and export everything,Very Negative,CLOSED,2025-03-06
+tkt_74,usr_23,Cancel subscription at the end of this term,Neutral,OPEN,2025-04-18
+tkt_75,usr_23,Overcharged again on this month's invoice,Negative,OPEN,2025-05-22
+tkt_76,usr_23,No response on my escalated ticket for a week,Very Negative,CLOSED,2025-04-22
+tkt_77,usr_24,Competitor is cheaper for the same seats,Very Negative,OPEN,2025-03-04
+tkt_78,usr_24,Competitor is cheaper for the same seats,Very Negative,CLOSED,2025-04-15
+tkt_79,usr_24,No response on my escalated ticket for a week,Negative,CLOSED,2025-05-25
+tkt_80,usr_24,Cancel subscription at the end of this term,Negative,OPEN,2025-03-14
+tkt_81,usr_24,Requesting refund for the last two invoices,Negative,OPEN,2025-04-12
+tkt_82,usr_24,Competitor is cheaper for the same seats,Negative,OPEN,2025-05-20
+tkt_83,usr_25,Cancel subscription at the end of this term,Very Negative,OPEN,2025-04-26
+tkt_84,usr_27,Question about the reporting filters,Very Negative,CLOSED,2025-05-30
+tkt_85,usr_27,Slow dashboard load in the mornings,Negative,OPEN,2025-04-19
+tkt_86,usr_27,Cannot login from the mobile app,Negative,CLOSED,2025-04-30
+tkt_87,usr_27,Request for an extra seat,Neutral,CLOSED,2025-05-13
+tkt_88,usr_27,Question about the reporting filters,Neutral,CLOSED,2025-03-27
+tkt_89,usr_28,Minor bug in the date picker,Neutral,OPEN,2025-04-20
+tkt_90,usr_32,"Very disappointed, considering alternatives",Negative,OPEN,2025-04-03
+tkt_91,usr_32,Cancel subscription at the end of this term,Negative,OPEN,2025-05-12
+tkt_92,usr_33,Export formatting question,Neutral,CLOSED,2025-05-04
+tkt_93,usr_34,Export formatting question,Neutral,CLOSED,2025-03-20
+tkt_94,usr_34,Minor bug in the date picker,Neutral,CLOSED,2025-04-18
+tkt_95,usr_34,Question about the reporting filters,Neutral,CLOSED,2025-05-19
+tkt_96,usr_35,Slow dashboard load in the mornings,Neutral,CLOSED,2025-03-07
+tkt_97,usr_35,Cannot login from the mobile app,Neutral,CLOSED,2025-04-04
+tkt_98,usr_35,Question about the reporting filters,Neutral,CLOSED,2025-04-10
+tkt_99,usr_35,How do I set up SSO,Neutral,OPEN,2025-04-06
+tkt_100,usr_37,Where do I change the billing address,Negative,OPEN,2025-05-28
+tkt_101,usr_38,How do I close my account and export everything,Neutral,CLOSED,2025-05-01
+tkt_102,usr_39,Question about the reporting filters,Neutral,CLOSED,2025-05-23
+tkt_103,usr_39,How do I set up SSO,Negative,CLOSED,2025-03-16
+tkt_104,usr_40,Slow dashboard load in the mornings,Neutral,OPEN,2025-05-21
+tkt_105,usr_42,We are switching to another vendor next month,Very Negative,CLOSED,2025-03-12
+tkt_106,usr_43,Request for an extra seat,Neutral,CLOSED,2025-05-24
+tkt_107,usr_43,Question about the reporting filters,Negative,CLOSED,2025-03-05
+tkt_108,usr_44,Feature request: scheduled reports,Neutral,CLOSED,2025-04-16
+tkt_109,usr_44,Requesting refund for the last two invoices,Neutral,OPEN,2025-04-12
+tkt_110,usr_45,Minor bug in the date picker,Neutral,OPEN,2025-04-22
+tkt_111,usr_46,How do I invite a teammate,Neutral,OPEN,2025-03-08
+tkt_112,usr_46,How do I close my account and export everything,Negative,CLOSED,2025-06-01
+tkt_113,usr_46,How do I invite a teammate,Neutral,CLOSED,2025-03-23
+tkt_114,usr_49,Feature request: scheduled reports,Negative,CLOSED,2025-03-04
+tkt_115,usr_52,Minor bug in the date picker,Neutral,CLOSED,2025-05-22
+tkt_116,usr_53,Where do I change the billing address,Neutral,OPEN,2025-05-30
+tkt_117,usr_53,Slow dashboard load in the mornings,Neutral,CLOSED,2025-04-20
+tkt_118,usr_53,Cannot login from the mobile app,Neutral,CLOSED,2025-05-11
+tkt_119,usr_54,Cannot login from the mobile app,Neutral,OPEN,2025-03-12
+tkt_120,usr_54,Slow dashboard load in the mornings,Negative,CLOSED,2025-05-22
+tkt_121,usr_56,Feature request: scheduled reports,Negative,CLOSED,2025-03-11
+tkt_122,usr_56,No response on my escalated ticket for a week,Neutral,OPEN,2025-03-16
+tkt_123,usr_56,Where do I change the billing address,Very Negative,CLOSED,2025-03-08
+tkt_124,usr_56,How do I close my account and export everything,Neutral,CLOSED,2025-04-19
+tkt_125,usr_56,Feature request: scheduled reports,Neutral,OPEN,2025-04-26
+tkt_126,usr_57,Third time reporting this and still not fixed,Neutral,CLOSED,2025-04-27
+tkt_127,usr_57,Where do I change the billing address,Negative,OPEN,2025-05-24
+tkt_128,usr_59,Where do I change the billing address,Very Negative,CLOSED,2025-03-18
+tkt_129,usr_60,Question about the reporting filters,Neutral,OPEN,2025-05-10
+tkt_130,usr_61,Question about the reporting filters,Neutral,CLOSED,2025-05-07
+tkt_131,usr_61,Minor bug in the date picker,Negative,OPEN,2025-04-15
+tkt_132,usr_61,Overcharged again on this month's invoice,Negative,OPEN,2025-04-08
+tkt_133,usr_61,How do I invite a teammate,Negative,CLOSED,2025-04-07
+tkt_134,usr_62,Request for an extra seat,Neutral,OPEN,2025-05-04
+tkt_135,usr_63,How do I invite a teammate,Neutral,CLOSED,2025-04-11
+tkt_136,usr_64,Slow dashboard load in the mornings,Neutral,CLOSED,2025-04-17
+tkt_137,usr_65,How do I invite a teammate,Negative,OPEN,2025-04-04
+tkt_138,usr_66,Where do I change the billing address,Negative,OPEN,2025-04-16
+tkt_139,usr_67,Question about the reporting filters,Negative,OPEN,2025-03-06
+tkt_140,usr_67,How do I invite a teammate,Neutral,OPEN,2025-05-17
+tkt_141,usr_67,Export formatting question,Neutral,CLOSED,2025-04-25
+tkt_142,usr_67,Minor bug in the date picker,Very Negative,CLOSED,2025-04-16
+tkt_143,usr_67,"Very disappointed, considering alternatives",Negative,CLOSED,2025-05-31
+tkt_144,usr_68,Cannot login from the mobile app,Neutral,CLOSED,2025-04-02
+tkt_145,usr_69,Request for an extra seat,Neutral,CLOSED,2025-04-03
+tkt_146,usr_70,Requesting refund for the last two invoices,Negative,OPEN,2025-03-30
+tkt_147,usr_70,How do I invite a teammate,Very Negative,CLOSED,2025-05-10
+tkt_148,usr_71,Request for an extra seat,Very Negative,OPEN,2025-04-15
+tkt_149,usr_73,Feature request: scheduled reports,Neutral,OPEN,2025-03-23
+tkt_150,usr_74,Minor bug in the date picker,Neutral,CLOSED,2025-04-10
+tkt_151,usr_74,Feature request: scheduled reports,Negative,CLOSED,2025-05-07
+tkt_152,usr_76,Slow dashboard load in the mornings,Neutral,CLOSED,2025-03-30
+tkt_153,usr_76,Cannot login from the mobile app,Neutral,CLOSED,2025-05-10
+tkt_154,usr_78,Cancel subscription at the end of this term,Negative,CLOSED,2025-05-16
+tkt_155,usr_78,Export formatting question,Neutral,OPEN,2025-05-30
+tkt_156,usr_78,Cannot login from the mobile app,Neutral,CLOSED,2025-05-11
+tkt_157,usr_79,Feature request: scheduled reports,Neutral,OPEN,2025-05-24
+tkt_158,usr_80,"Very disappointed, considering alternatives",Very Negative,OPEN,2025-03-29
+tkt_159,usr_80,Question about the reporting filters,Negative,OPEN,2025-04-05
+tkt_160,usr_80,How do I invite a teammate,Very Negative,CLOSED,2025-04-17
+tkt_161,usr_81,How do I close my account and export everything,Neutral,OPEN,2025-05-18
+tkt_162,usr_81,Slow dashboard load in the mornings,Negative,CLOSED,2025-05-13
+tkt_163,usr_81,Cannot login from the mobile app,Negative,CLOSED,2025-05-14
+tkt_164,usr_82,How do I invite a teammate,Negative,CLOSED,2025-05-26
+tkt_165,usr_83,How do I set up SSO,Neutral,OPEN,2025-03-14
+tkt_166,usr_83,Overcharged again on this month's invoice,Negative,OPEN,2025-03-11
+tkt_167,usr_84,Question about the reporting filters,Neutral,CLOSED,2025-04-17
+tkt_168,usr_87,Cannot login from the mobile app,Negative,OPEN,2025-05-11
+tkt_169,usr_87,How do I set up SSO,Neutral,CLOSED,2025-03-08
+tkt_170,usr_87,How do I invite a teammate,Negative,CLOSED,2025-05-08
+tkt_171,usr_87,Where do I change the billing address,Very Negative,OPEN,2025-05-19
+tkt_172,usr_88,Cancel subscription at the end of this term,Neutral,CLOSED,2025-05-31
+tkt_173,usr_89,Cannot login from the mobile app,Neutral,CLOSED,2025-05-20
+tkt_174,usr_90,Export formatting question,Negative,OPEN,2025-05-26
+tkt_175,usr_90,Export formatting question,Negative,OPEN,2025-04-25
+tkt_176,usr_91,Slow dashboard load in the mornings,Neutral,CLOSED,2025-05-22
+tkt_177,usr_94,How do I set up SSO,Neutral,CLOSED,2025-03-24
+tkt_178,usr_94,How do I close my account and export everything,Negative,CLOSED,2025-03-11
+tkt_179,usr_94,Cannot login from the mobile app,Neutral,CLOSED,2025-05-16
+tkt_180,usr_95,Cannot login from the mobile app,Neutral,OPEN,2025-03-31
+tkt_181,usr_96,Cannot login from the mobile app,Negative,OPEN,2025-03-31
+tkt_182,usr_96,How do I close my account and export everything,Neutral,OPEN,2025-04-23
+tkt_183,usr_96,Feature request: scheduled reports,Neutral,CLOSED,2025-03-28
+tkt_184,usr_96,How do I set up SSO,Negative,CLOSED,2025-03-27
+tkt_185,usr_99,Request for an extra seat,Neutral,CLOSED,2025-05-12
+tkt_186,usr_99,"Very disappointed, considering alternatives",Negative,CLOSED,2025-04-11
+tkt_187,usr_100,Feature request: scheduled reports,Very Negative,OPEN,2025-05-23
+tkt_188,usr_100,Cancel subscription at the end of this term,Neutral,OPEN,2025-04-17

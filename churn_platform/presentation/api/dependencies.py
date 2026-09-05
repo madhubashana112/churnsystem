@@ -1,6 +1,9 @@
+import logging
 import os
 import time
+from typing import Optional
 
+from churn_platform.config import get_settings
 from churn_platform.infrastructure.repositories.stateless_tenant_repo import (
     StatelessTenantRepository,
     encode_tenant_id,
@@ -9,54 +12,59 @@ from churn_platform.infrastructure.repositories.memory_analysis_repo import Memo
 from churn_platform.infrastructure.ai.qwen_gateway import QwenGateway
 from churn_platform.infrastructure.parsers.schema_resolver import AISchemaResolver
 from churn_platform.infrastructure.parsers.feature_synthesizer import PandasFeatureSynthesizer
+from churn_platform.infrastructure.parsers.sector_feature_enrichers import SectorFeatureEnricher
 from churn_platform.infrastructure.ai.cores.saas_core import SaasCore
 from churn_platform.infrastructure.ai.cores.telecom_core import TelecomCore
 from churn_platform.infrastructure.ai.cores.fintech_core import FintechCore
 from churn_platform.infrastructure.local_engine.heuristic_schema_resolver import HeuristicSchemaResolver
 from churn_platform.infrastructure.local_engine.local_churn_core import LocalChurnCore
 
+logger = logging.getLogger(__name__)
+
 # Singletons for MVP
 # Stateless: works identically on one process or across serverless instances.
 _tenant_repo = StatelessTenantRepository()
 _analysis_repo = MemoryAnalysisRepository()
-_qwen_gateway = QwenGateway()
-_schema_resolver = AISchemaResolver(_qwen_gateway)
 _feature_synthesizer = PandasFeatureSynthesizer()
-
-_saas_core = SaasCore(_qwen_gateway)
-_telecom_core = TelecomCore(_qwen_gateway)
-_fintech_core = FintechCore(_qwen_gateway)
+_sector_enricher = SectorFeatureEnricher()
 
 _local_resolver = HeuristicSchemaResolver()
 _local_cores = {
-    "SaaS": LocalChurnCore("SaaS"),
-    "Telecom": LocalChurnCore("Telecom"),
-    "FinTech": LocalChurnCore("FinTech"),
+    "saas": LocalChurnCore("SaaS"),
+    "telecom": LocalChurnCore("Telecom"),
+    "fintech": LocalChurnCore("FinTech"),
 }
 
-VALID_SECTORS = ("SaaS", "Telecom", "FinTech")
+CANONICAL_SECTORS = {"saas": "SaaS", "telecom": "Telecom", "fintech": "FinTech"}
+VALID_SECTORS = tuple(CANONICAL_SECTORS.values())
 
-# auto  — try Qwen, fall back to the local engine if it is unavailable (default)
-# qwen  — Qwen only; surface the error instead of falling back
-# local — never call the model
 ENGINE_MODES = ("auto", "qwen", "local")
 
 
+def normalise_sector(sector: str) -> Optional[str]:
+    """
+    Canonical sector name, or None if unrecognised.
+
+    Accepts any casing and surrounding whitespace: "saas" and " SaaS " both
+    resolve, where an exact match would raise on a perfectly valid request.
+    """
+    return CANONICAL_SECTORS.get((sector or "").strip().lower())
+
+
 def default_engine_mode() -> str:
-    mode = (os.getenv("CHURN_ENGINE") or "auto").strip().lower()
+    mode = (os.getenv("CHURN_ENGINE") or get_settings().churn_engine or "auto").strip().lower()
     return mode if mode in ENGINE_MODES else "auto"
 
 
 # After Qwen fails, stop retrying it for a while. Without this every request pays
 # the latency of two calls that are already known to fail.
-_QWEN_COOLDOWN_SECONDS = 120
 _qwen_unavailable_until = 0.0
-_qwen_last_reason = None
+_qwen_last_reason: Optional[str] = None
 
 
 def note_qwen_failure(reason: str) -> None:
     global _qwen_unavailable_until, _qwen_last_reason
-    _qwen_unavailable_until = time.monotonic() + _QWEN_COOLDOWN_SECONDS
+    _qwen_unavailable_until = time.monotonic() + get_settings().qwen_cooldown_seconds
     _qwen_last_reason = reason
 
 
@@ -70,13 +78,27 @@ def qwen_cooling_down() -> bool:
     return time.monotonic() < _qwen_unavailable_until
 
 
-def qwen_last_reason():
+def qwen_last_reason() -> Optional[str]:
     return _qwen_last_reason
 
 
 def api_key_configured() -> bool:
     key = os.getenv("DASHSCOPE_API_KEY") or os.getenv("ALIBABA_API_KEY")
     return bool(key and key.strip() and key.strip() != "MISSING_KEY")
+
+
+# The gateway raises without a key, so it is built on first use rather than at
+# import: a keyless deployment must still start and serve the local engine.
+_qwen_gateway: Optional[QwenGateway] = None
+_ai_resolver: Optional[AISchemaResolver] = None
+_ai_cores: dict = {}
+
+
+def get_qwen_gateway() -> QwenGateway:
+    global _qwen_gateway
+    if _qwen_gateway is None:
+        _qwen_gateway = QwenGateway()
+    return _qwen_gateway
 
 
 def get_tenant_repo():
@@ -92,7 +114,10 @@ def get_analysis_repo():
 
 
 def get_schema_resolver():
-    return _schema_resolver
+    global _ai_resolver
+    if _ai_resolver is None:
+        _ai_resolver = AISchemaResolver(get_qwen_gateway())
+    return _ai_resolver
 
 
 def get_local_schema_resolver():
@@ -103,18 +128,27 @@ def get_feature_synthesizer():
     return _feature_synthesizer
 
 
+def get_sector_enricher():
+    return _sector_enricher
+
+
 def get_sector_core(sector: str):
-    if sector == "SaaS":
-        return _saas_core
-    elif sector == "Telecom":
-        return _telecom_core
-    elif sector == "FinTech":
-        return _fintech_core
-    raise ValueError("Invalid sector")
+    canonical = normalise_sector(sector)
+    if canonical is None:
+        raise ValueError(f"Invalid sector: {sector!r}")
+
+    if canonical not in _ai_cores:
+        gateway = get_qwen_gateway()
+        _ai_cores[canonical] = {
+            "SaaS": SaasCore,
+            "Telecom": TelecomCore,
+            "FinTech": FintechCore,
+        }[canonical](gateway)
+    return _ai_cores[canonical]
 
 
 def get_local_sector_core(sector: str):
-    core = _local_cores.get(sector)
-    if core is None:
-        raise ValueError("Invalid sector")
-    return core
+    canonical = normalise_sector(sector)
+    if canonical is None:
+        raise ValueError(f"Invalid sector: {sector!r}")
+    return _local_cores[canonical.lower()]
