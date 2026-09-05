@@ -30,6 +30,9 @@ _ID_NAME = re.compile(r'(^id$|_id$|_hash$|hash_|imsi|mac|ip_)', re.I)
 # Category values that represent a failed outcome.
 _FAILURE_VALUE = re.compile(
     r'(?:fail|declin|drop|error|reject|cancel|overdue|late|unpaid|bounce)', re.I)
+_KNOWN_SUFFIX = re.compile(r'\.(csv|tsv|xlsx|xlsm|xls|json)$', re.I)
+# file_ingestion names workbook sheets "book.xlsx::Sheet1".
+_SHEET_SEPARATOR = '::'
 
 
 class PandasFeatureSynthesizer(IFeatureSynthesizer):
@@ -118,7 +121,7 @@ class PandasFeatureSynthesizer(IFeatureSynthesizer):
 
         # Only counts mean zero when absent. Filling a recency or a rate with 0
         # would claim "seen today" or "never fails" for an entity with no rows.
-        present_counts = [c for c in count_columns if c in base_df.columns]
+        present_counts = list(dict.fromkeys(c for c in count_columns if c in base_df.columns))
         if present_counts:
             base_df[present_counts] = base_df[present_counts].fillna(0)
 
@@ -175,7 +178,7 @@ class PandasFeatureSynthesizer(IFeatureSynthesizer):
         reference_ts: Optional[pd.Timestamp],
     ) -> Tuple[Optional[pd.DataFrame], List[str]]:
         """One row per entity summarising this child table."""
-        label = self._slug(meta.file_name.rsplit('.', 1)[0])
+        label = self._table_label(meta.file_name)
         grouped = df.groupby(join_key)
         count_columns = [f'{label}_count']
 
@@ -306,6 +309,18 @@ class PandasFeatureSynthesizer(IFeatureSynthesizer):
             return None
         anchor = reference if reference is not None else parsed.max()
         return (anchor - parsed).dt.total_seconds().div(86400).round(1)
+
+    def _table_label(self, file_name: str) -> str:
+        """
+        Feature-name prefix for a table.
+
+        Splitting on the last '.' would turn "book.xlsx::invoices" into "book",
+        collapsing every sheet in a workbook onto one prefix and colliding all
+        of their features together.
+        """
+        base, _, sheet = str(file_name).partition(_SHEET_SEPARATOR)
+        base = _KNOWN_SUFFIX.sub('', base)
+        return self._slug(f'{base}_{sheet}' if sheet else base)
 
     def _slug(self, value: str) -> str:
         return re.sub(r'[^0-9a-zA-Z]+', '_', str(value)).strip('_').lower()
