@@ -1,6 +1,31 @@
 # Domain-Adaptive Churn Prediction Platform
 
-An AI-powered multi-tenant churn prediction platform that dynamically adapts to different industry verticals (SaaS, FinTech, Telecom) with automated schema mapping, data ingestion, risk scoring, and interactive analytics dashboards.
+**Upload your raw tables. It works out the schema, derives the features and scores churn — per vertical.**
+
+[![Live prototype](https://img.shields.io/badge/live-churnsystem--two.vercel.app-6366f1)](https://churnsystem-two.vercel.app)
+[![Tests](https://img.shields.io/badge/tests-56%20passing-059669)](#tests)
+
+| | |
+|---|---|
+| **Live prototype** | **https://churnsystem-two.vercel.app** |
+| **Project brief** | [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) |
+| **Demo script** | [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md) |
+| **AI usage statement** | [docs/AI_USAGE.md](docs/AI_USAGE.md) |
+
+## Try it in 30 seconds — no install, no API key
+
+1. Open **https://churnsystem-two.vercel.app**
+2. Enter any company name and pick a vertical (SaaS, Telecom or FinTech)
+3. Click **Run the sample**
+
+It scores 100 customers from the bundled dataset for that vertical and shows the
+discovered schema, the churn drivers and a retention playbook per account. No
+API key is required — the platform falls back to a deterministic offline engine
+and tells you which engine produced the numbers.
+
+Against the known churning cohort in the bundled data (25 of 100 per vertical),
+the offline engine reaches **AUC 0.96–0.98**, putting **20–22 of the 25 real
+churners in its top 25**, in under a tenth of a second.
 
 ## Features
 
@@ -48,10 +73,14 @@ pip install -r requirements-dev.txt
 `requirements.txt` holds runtime dependencies only — that is what the deployed
 function installs. `requirements-dev.txt` adds pytest and watchfiles.
 
-### 4. Configuration
-Copy the sample environment file and add your credentials:
+### 4. Configuration (optional)
+A Qwen API key is **not required**. Without one the platform runs its
+deterministic offline engine, which is what the live prototype demonstrates.
+
+To enable the Qwen path:
 ```bash
 cp api_key.env.example api_key.env
+# then set DASHSCOPE_API_KEY in api_key.env
 ```
 
 ### 5. Generate Mock Data (Optional)
@@ -61,8 +90,12 @@ python generate_mock_data.py
 
 ### 6. Run the Application
 ```bash
-uvicorn churn_platform.main:app --host 127.0.0.1 --port 8000 --reload
+uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
+
+`main.py` at the repository root re-exports the app, so `uvicorn main:app` and
+`uvicorn churn_platform.main:app` are equivalent. No API key is needed — without
+one the platform runs its offline engine.
 
 Open your browser and navigate to:
 - **Onboarding**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
