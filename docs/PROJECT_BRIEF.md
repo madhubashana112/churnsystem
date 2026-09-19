@@ -111,7 +111,7 @@ playbook naming the channel, the action and the message to send.
 produced it, and a fallback is announced rather than passed off as a model
 result.
 
-**Engineering quality.** 56 tests, none touching the network. Feature tests
+**Engineering quality.** 89 tests, none touching the network. Feature tests
 assert hand-computed values (velocity `10 / (20/4.286) = 2.14`, a 0.5 epsilon
 floor to stop divide-by-zero, `0.3` failure rate) rather than checking generated
 data against itself.
@@ -146,5 +146,8 @@ data against itself.
 - The Qwen path is implemented but unverified end-to-end, because the API key
   available during the build was rejected (401). The offline engine is what the
   live prototype demonstrates.
-- The three sector cores are only reachable with a live key, so they are not yet
-  covered by the test suite.
+- The three sector cores and the AI schema resolver cannot be exercised against
+  the real provider without a live key, so they are covered against a fake
+  gateway instead: the request they build, the mapping of a well-formed
+  response, and the malformed shapes a model actually returns. What remains
+  unverified is the provider's own behaviour, not our handling of it.

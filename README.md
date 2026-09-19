@@ -3,7 +3,7 @@
 **Upload your raw tables. It works out the schema, derives the features and scores churn — per vertical.**
 
 [![Live prototype](https://img.shields.io/badge/live-churnsystem--two.vercel.app-6366f1)](https://churnsystem-two.vercel.app)
-[![Tests](https://img.shields.io/badge/tests-56%20passing-059669)](#tests)
+[![Tests](https://img.shields.io/badge/tests-89%20passing-059669)](#tests)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 | | |
@@ -161,9 +161,14 @@ no network access and no key.
 pytest
 ```
 
-56 tests, none touching the network. Feature tests use hand-built DataFrames with
+89 tests, none touching the network. Feature tests use hand-built DataFrames with
 hand-computable expected values rather than the generated fixtures — asserting
 against generated data only proves the two agree, not that either is right.
+
+The Qwen path is covered too, against a fake gateway: the three sector cores and
+the AI schema resolver are parsers for model output, so the tests pin down what
+happens when that output arrives malformed, partial or with an entity nobody
+asked about.
 
 Config lives in `pytest.ini`, not `pyproject.toml`: adding a `pyproject.toml`
 makes Vercel's Python build switch from `requirements.txt` to `uv lock`, which
@@ -211,6 +216,26 @@ so it is fully functional with or without an API key.
 - **`local`** — never call the model.
 
 Set the process-wide default with `CHURN_ENGINE=auto|qwen|local`.
+
+### Reading the model's output
+
+The Qwen path is a parser for output nobody controls, so it is written to
+recover what is recoverable and reject what is not — the same rule the role
+validator follows.
+
+- A prediction that cannot be read is dropped, not its batch. At a batch size of
+  10 against a 20-entity cap, aborting on one bad entry would cost half the run.
+- A prediction for an entity that was never sent is dropped. A hallucinated id
+  would otherwise reach the dashboard as an account with drivers but no
+  features, and count towards `entities_scored`.
+- A response that yields nothing usable for a non-empty batch raises, so `auto`
+  falls back to the local engine. Returning an empty list instead would report a
+  successful Qwen run that scored nobody.
+- A table the resolver cannot classify is dropped rather than failing the
+  upload, and a missing top-level `primary_entity_key` is taken from the tables
+  when they agree on one.
+
+Every drop is logged with its reason.
 
 ### The local engine
 
