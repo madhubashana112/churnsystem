@@ -1,0 +1,41 @@
+# The test suite makes no network calls and needs no API key: the Qwen path is
+# covered against a fake gateway, so this runs the same way on a fork.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor stated in the README, and the version the runtime uses.
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run the test suite
+        run: pytest
+
+      - name: Check the app still builds its routes
+        # A syntax or wiring error that no test touches would otherwise only
+        # surface as a failed deployment.
+        run: python -c "import main; assert main.app.routes"
